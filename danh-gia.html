@@ -26,9 +26,8 @@
             --danger-light: #450a0a;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; }
         
-        /* CẬP NHẬT FONT MONTSERRAT & BÙ KÍCH THƯỚC */
         body { 
             font-family: 'Montserrat', sans-serif; 
             color: var(--text-main); 
@@ -36,14 +35,11 @@
             min-height: 100vh; 
             transition: background-color 0.3s, color 0.3s; 
             padding-bottom: 50px;
-            font-size: 17px; /* Tăng nền tảng lên 1px để không bị lọt thỏm */
+            font-size: 17px; 
             line-height: 1.7;
         }
 
-        /* Ép tất cả nút bấm và form nhập liệu dùng chung font Montserrat */
-        button, input, select, textarea {
-            font-family: inherit; 
-        }
+        button, input, select, textarea { font-family: inherit; }
 
         header { background: var(--bg-card); padding: 15px 5%; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border-color); transition: 0.3s;}
         .btn-back { text-decoration: none; color: var(--blue-primary); font-weight: bold; font-size: 17px; display: inline-flex; align-items: center; gap: 8px; }
@@ -52,11 +48,11 @@
 
         .eval-container { max-width: 800px; margin: 40px auto; padding: 0 5%; }
         .eval-header { text-align: center; margin-bottom: 40px; }
-        .eval-title { font-size: 34px; color: var(--blue-dark); margin-bottom: 10px; font-weight: 800; } /* 32 -> 34px */
-        .eval-desc { font-size: 18px; color: var(--text-muted); } /* 16 -> 18px */
+        .eval-title { font-size: 34px; color: var(--blue-dark); margin-bottom: 10px; font-weight: 800; } 
+        .eval-desc { font-size: 18px; color: var(--text-muted); } 
 
         .card { background: var(--bg-card); padding: 35px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid var(--border-color); margin-bottom: 30px; transition: 0.3s;}
-        .card-title { font-size: 22px; color: var(--text-main); margin-bottom: 20px; font-weight: 700; display: flex; align-items: center; gap: 10px;} /* 20 -> 22px */
+        .card-title { font-size: 22px; color: var(--text-main); margin-bottom: 20px; font-weight: 700; display: flex; align-items: center; gap: 10px;} 
         .card-title .step-badge { background: var(--blue-light); color: var(--blue-primary); padding: 5px 14px; border-radius: 50px; font-size: 16px; font-weight: 700;}
 
         /* RED FLAG SECTION */
@@ -64,44 +60,67 @@
         .red-flag-box h3 { color: var(--danger); margin-bottom: 10px; font-size: 19px; display: flex; align-items: center; gap: 8px;}
         .question-row { margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px dashed var(--border-color); }
         .question-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0;}
-        .question-text { font-size: 17px; font-weight: 600; margin-bottom: 12px; line-height: 1.6; color: var(--text-main);}
+        .question-text { font-size: 17px; font-weight: 600; margin-bottom: 15px; color: var(--text-main);}
         
-        .radio-group-inline { display: flex; gap: 20px; flex-wrap: wrap; } /* Thêm wrap để không rớt chữ trên ĐT */
-        .radio-btn-label { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 16px; cursor: pointer; color: var(--text-muted); padding: 10px 25px; border: 2px solid var(--border-color); border-radius: 50px; transition: 0.2s;}
-        input[type="radio"] { display: none; }
-        input[type="radio"]:checked + .radio-btn-label.yes-btn { background: var(--danger); border-color: var(--danger); color: white; }
-        input[type="radio"]:checked + .radio-btn-label.no-btn { background: var(--success); border-color: var(--success); color: white; }
+        .radio-group-inline { display: flex; gap: 20px; flex-wrap: wrap; }
+        .hidden-input { display: none; }
+        .radio-btn-label { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 16px; cursor: pointer; color: var(--text-muted); padding: 10px 25px; border: 2px solid var(--border-color); border-radius: 50px; transition: 0.2s; background: var(--bg-body);}
+        .hidden-input:checked + .yes-btn { background: var(--danger); border-color: var(--danger); color: white; }
+        .hidden-input:checked + .no-btn { background: var(--success); border-color: var(--success); color: white; }
 
         /* ALERT BOX */
-        #medicalAlert { display: none; text-align: center; padding: 40px 20px; animation: fadeIn 0.5s; }
-        #medicalAlert h2 { color: var(--danger); font-size: 28px; margin-bottom: 15px; font-weight: 800;}
-        #medicalAlert p { font-size: 18px; line-height: 1.6; color: var(--text-main); margin-bottom: 20px;}
-        .btn-emergency { background: var(--danger); color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 18px; display: inline-block; box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3);}
+        #medicalAlert { display: none; text-align: center; padding: 40px 30px; animation: fadeIn 0.5s; border: 2px solid var(--danger); border-radius: 15px;}
+        #medicalAlert h2 { color: var(--danger); font-size: 28px; margin-bottom: 20px; font-weight: 800;}
+        #medicalAlert p { font-size: 17px; line-height: 1.6; color: var(--text-main); margin-bottom: 15px;}
+        #medicalAlert p strong { color: var(--blue-dark); font-weight: 800; font-size: 18px;}
+        .btn-emergency { background: var(--danger); color: white; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 18px; display: inline-block; margin-top: 15px; box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3); transition: 0.3s;}
+        .btn-emergency:hover { filter: brightness(1.1); transform: translateY(-2px); }
 
-        /* CMDQ SECTION */
-        #cmdqSection { display: none; animation: fadeIn 0.5s; }
-        .select-area { width: 100%; padding: 16px; font-size: 17px; border-radius: 12px; border: 2px solid var(--border-color); background: var(--bg-body); color: var(--text-main); margin-bottom: 25px; outline: none; font-weight: 600; transition: 0.3s;}
-        .select-area:focus { border-color: var(--blue-primary); }
-        
-        .grid-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .grid-options label { display: block; padding: 15px; background: var(--bg-body); border: 2px solid var(--border-color); border-radius: 12px; text-align: center; font-weight: 600; font-size: 16px; cursor: pointer; transition: 0.2s; color: var(--text-muted);}
-        .grid-options input:checked + label { background: var(--blue-light); border-color: var(--blue-primary); color: var(--blue-primary); }
-        .grid-options label:hover { border-color: var(--blue-primary); }
+        /* EVALUATION TABS */
+        #evaluationSection { display: none; animation: fadeIn 0.5s; }
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;}
+        .tab-btn { flex: 1; padding: 15px 10px; text-align: center; background: var(--bg-body); border: 2px solid var(--border-color); border-radius: 15px; font-weight: 800; font-size: 16px; color: var(--text-muted); cursor: pointer; transition: 0.3s; min-width: 150px;}
+        .tab-btn.active { background: var(--blue-primary); border-color: var(--blue-primary); color: white; box-shadow: 0 5px 15px rgba(14, 165, 233, 0.3);}
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.4s; }
 
-        .btn-submit { width: 100%; padding: 18px; background: var(--blue-primary); color: white; border: none; border-radius: 50px; font-size: 18px; font-weight: 700; cursor: pointer; transition: 0.3s; margin-top: 20px; text-transform: uppercase; letter-spacing: 0.5px;}
-        .btn-submit:hover { filter: brightness(1.1); transform: translateY(-3px); }
-        .btn-continue { width: 100%; padding: 18px; background: var(--success); color: white; border: none; border-radius: 50px; font-size: 18px; font-weight: 700; cursor: pointer; transition: 0.3s; margin-top: 10px;}
-        .btn-continue:hover { filter: brightness(1.1); transform: translateY(-2px); }
+        .info-box { background: var(--blue-light); border-left: 4px solid var(--blue-primary); padding: 15px 20px; border-radius: 0 12px 12px 0; margin-bottom: 25px; font-size: 16px; color: var(--text-main);}
+        .info-box span { display: block; font-weight: 700; color: var(--blue-dark); margin-bottom: 5px;}
+
+        /* NORDIC & CMDQ GRID */
+        .grid-options { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
+        .custom-label { display: block; padding: 15px; background: var(--bg-body); border: 2px solid var(--border-color); border-radius: 12px; text-align: center; font-weight: 600; font-size: 16px; cursor: pointer; transition: 0.2s; color: var(--text-muted);}
+        .hidden-input:checked + .nordic-label { background: var(--orange-light); border-color: var(--orange-primary); color: var(--orange-primary); }
+        .hidden-input:checked + .cmdq-label { background: var(--blue-light); border-color: var(--blue-primary); color: var(--blue-primary); }
+        .custom-label:hover { border-color: var(--blue-primary); }
+
+        /* SLIDER VAS */
+        .vas-container { text-align: center; padding: 20px 0; }
+        .vas-slider { -webkit-appearance: none; width: 100%; height: 8px; border-radius: 5px; background: linear-gradient(to right, var(--success), var(--orange-primary), var(--danger)); outline: none; margin: 30px 0; }
+        .vas-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 25px; height: 25px; border-radius: 50%; background: white; border: 3px solid var(--text-main); cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: 0.2s;}
+        .vas-slider::-webkit-slider-thumb:hover { transform: scale(1.2); }
+        .vas-labels { display: flex; justify-content: space-between; font-weight: 800; color: var(--text-muted); font-size: 18px;}
+        .vas-value-display { font-size: 48px; font-weight: 900; color: var(--blue-dark); margin-bottom: 10px;}
+
+        .btn-submit { width: 100%; padding: 20px; background: var(--blue-primary); color: white; border: none; border-radius: 50px; font-size: 18px; font-weight: 800; cursor: pointer; transition: 0.3s; margin-top: 30px; text-transform: uppercase;}
+        .btn-submit:hover { filter: brightness(1.1); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3); }
 
         /* RESULT SECTION */
-        #resultSection { display: none; text-align: center; animation: fadeIn 0.5s; }
-        .result-badge { display: inline-block; padding: 10px 25px; border-radius: 50px; font-size: 20px; font-weight: 800; margin-bottom: 20px; color: white;}
-        .score-green { background: var(--success); box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3); }
-        .score-yellow { background: var(--orange-primary); box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3); }
-        .score-red { background: var(--danger); box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3); }
-        .result-advice { font-size: 18px; line-height: 1.7; text-align: justify; background: var(--bg-body); padding: 25px 30px; border-radius: 15px; border: 1px solid var(--border-color); margin-bottom: 30px; transition: 0.3s;}
+        #resultSection { display: none; animation: fadeIn 0.5s; }
+        .result-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px dashed var(--border-color);}
+        
+        .prescription-box { background: var(--bg-card); padding: 30px; border-radius: 20px; border: 2px solid var(--blue-primary); margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .prescription-box h3 { color: var(--text-main); font-size: 22px; margin-bottom: 20px; font-weight: 800; display: flex; align-items: center; gap: 10px;}
+        .prescription-list { list-style: none; }
+        .prescription-list li { position: relative; padding-left: 0; margin-bottom: 20px; font-size: 17px; color: var(--text-main); text-align: justify; line-height: 1.7; padding: 20px; background: var(--bg-body); border-radius: 12px; border-left: 4px solid var(--blue-primary);}
+        .prescription-list li strong { color: var(--blue-dark); font-size: 18px; display: block; margin-bottom: 8px;}
+        
+        .source-citation { font-size: 14px; color: var(--text-muted); font-style: Montserrat; text-align: right; margin-bottom: 30px; padding-right: 10px;}
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .btn-start-timer { display: block; width: 100%; padding: 20px; background: var(--success); color: white; text-align: center; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 18px; transition: 0.3s; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);}
+        .btn-start-timer:hover { filter: brightness(1.1); transform: translateY(-3px); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -113,112 +132,168 @@
 
     <div class="eval-container">
         <div class="eval-header">
-            <h1 class="eval-title">Đánh Giá Phân Loại Lâm Sàng</h1>
-            <p class="eval-desc">Hệ thống phân tích dựa trên thang đo y khoa Cornell (CMDQ) để cá nhân hóa cường độ tập luyện của bạn.</p>
+            <h1 class="eval-title">Báo Cáo Sức Khỏe Cơ Xương Khớp</h1>
+            <p class="eval-desc">Hoàn thành bài kiểm tra để hiểu rõ tình trạng cơ thể hiện tại và tối ưu hóa hiệu quả cho Lộ trình 4 tuần tập luyện của bạn.</p>
         </div>
 
         <div id="redFlagSection" class="card">
-            <div class="card-title"><span class="step-badge">Bước 1</span> Sàng lọc an toàn Y tế</div>
+            <div class="card-title"><span class="step-badge">Bước 1</span> Sàng lọc An toàn</div>
             <div class="red-flag-box">
-                <h3>🚨 Cảnh báo</h3>
-                <p style="font-size: 15px; color: var(--text-main);">Vui lòng trả lời trung thực để đảm bảo các bài tập trên hệ thống an toàn cho bạn.</p>
+                <h3>🚨 Cảnh báo bắt buộc</h3>
+                <p style="font-size: 14px; color: var(--text-main);">Vui lòng trả lời trung thực các câu hỏi sau để đảm bảo bạn an toàn khi bắt đầu tự tập luyện.</p>
             </div>
 
             <form id="redFlagForm">
                 <div class="question-row">
-                    <div class="question-text">1. Tuần qua, bạn có bị tê rần, châm chích lan dọc xuống tận bàn tay/bàn chân, hoặc có cảm giác yếu/hay rớt đồ vật khi cầm nắm không?</div>
+    <div class="question-text">1. Gần đây bạn có bị sụt cân nhanh chóng mà không rõ nguyên nhân không?</div>
+    <div class="radio-group-inline">
+        <input type="radio" id="rf1_yes" name="rf1" value="yes" class="hidden-input"><label for="rf1_yes" class="radio-btn-label yes-btn">Có</label>
+        <input type="radio" id="rf1_no" name="rf1" value="no" class="hidden-input" checked><label for="rf1_no" class="radio-btn-label no-btn">Không</label>
+    </div>
+</div>
+                <div class="question-row">
+                    <div class="question-text">2. Bạn có bị đau dữ dội đến mức tỉnh giấc vào ban đêm không?</div>
                     <div class="radio-group-inline">
-                        <input type="radio" id="rf1_yes" name="rf1" value="yes"><label for="rf1_yes" class="radio-btn-label yes-btn">Có</label>
-                        <input type="radio" id="rf1_no" name="rf1" value="no" checked><label for="rf1_no" class="radio-btn-label no-btn">Không</label>
+                        <input type="radio" id="rf2_yes" name="rf2" value="yes" class="hidden-input"><label for="rf2_yes" class="radio-btn-label yes-btn">Có</label>
+                        <input type="radio" id="rf2_no" name="rf2" value="no" class="hidden-input" checked><label for="rf2_no" class="radio-btn-label no-btn">Không</label>
                     </div>
                 </div>
                 <div class="question-row">
-                    <div class="question-text">2. Bạn có bị đau dữ dội về đêm (kể cả khi nằm nghỉ ngơi), kèm theo sốt hoặc sụt cân không rõ nguyên nhân không?</div>
+                    <div class="question-text">3. Bạn có bị tê vùng mông, bẹn hoặc khó kiểm soát việc đi vệ sinh không?</div>
                     <div class="radio-group-inline">
-                        <input type="radio" id="rf2_yes" name="rf2" value="yes"><label for="rf2_yes" class="radio-btn-label yes-btn">Có</label>
-                        <input type="radio" id="rf2_no" name="rf2" value="no" checked><label for="rf2_no" class="radio-btn-label no-btn">Không</label>
+                        <input type="radio" id="rf3_yes" name="rf3" value="yes" class="hidden-input"><label for="rf3_yes" class="radio-btn-label yes-btn">Có</label>
+                        <input type="radio" id="rf3_no" name="rf3" value="no" class="hidden-input" checked><label for="rf3_no" class="radio-btn-label no-btn">Không</label>
                     </div>
                 </div>
                 <div class="question-row">
-                    <div class="question-text">3. Bạn có vừa bị ngã, tai nạn hoặc chấn thương va đập mạnh nào trong vòng 1 tháng qua không?</div>
+                    <div class="question-text">4. Gần đây bạn có bị ngã mạnh, tai nạn hoặc chấn thương vùng lưng/cổ không?</div>
                     <div class="radio-group-inline">
-                        <input type="radio" id="rf3_yes" name="rf3" value="yes"><label for="rf3_yes" class="radio-btn-label yes-btn">Có</label>
-                        <input type="radio" id="rf3_no" name="rf3" value="no" checked><label for="rf3_no" class="radio-btn-label no-btn">Không</label>
+                        <input type="radio" id="rf4_yes" name="rf4" value="yes" class="hidden-input"><label for="rf4_yes" class="radio-btn-label yes-btn">Có</label>
+                        <input type="radio" id="rf4_no" name="rf4" value="no" class="hidden-input" checked><label for="rf4_no" class="radio-btn-label no-btn">Không</label>
                     </div>
                 </div>
-                <button type="button" class="btn-continue" onclick="checkRedFlags()">Tiếp tục đánh giá</button>
+                <div class="question-row">
+                    <div class="question-text">5. Bạn có đột ngột thấy yếu tay chân, hay bị vấp ngã, làm rơi đồ vật không?</div>
+                    <div class="radio-group-inline">
+                        <input type="radio" id="rf5_yes" name="rf5" value="yes" class="hidden-input"><label for="rf5_yes" class="radio-btn-label yes-btn">Có</label>
+                        <input type="radio" id="rf5_no" name="rf5" value="no" class="hidden-input" checked><label for="rf5_no" class="radio-btn-label no-btn">Không</label>
+                    </div>
+                </div>
+                <button type="button" class="btn-submit" style="background-color: var(--success);" onclick="checkRedFlags()">Xác nhận An toàn & Tiếp tục</button>
             </form>
         </div>
 
-        <div id="medicalAlert" class="card" style="border-color: var(--danger);">
+        <div id="medicalAlert" class="card">
             <h2>🚨 NGỪNG TẬP LUYỆN 🚨</h2>
-            <p>Dựa trên câu trả lời của bạn, cơ thể đang có dấu hiệu chèn ép thần kinh hoặc tổn thương cấu trúc nghiêm trọng (Red Flags).</p>
-            <p><strong>Trợ lý Vận động này (chỉ dành cho đau mỏi cơ học văn phòng) KHÔNG CÒN AN TOÀN cho bạn.</strong></p>
-            <p>Vui lòng ngừng tự tập luyện và đến gặp Bác sĩ chuyên khoa Thần kinh / Cột sống hoặc Chuyên viên Vật lý trị liệu để được thăm khám lâm sàng ngay lập tức.</p>
-            <br>
+            <p>Dựa trên câu trả lời của bạn, cơ thể đang có dấu hiệu chèn ép thần kinh hoặc tổn thương cấu trúc nghiêm trọng.</p>
+            <p><strong>Move Assist KHÔNG CÒN AN TOÀN cho bạn.</strong></p>
+            <p>Vui lòng không tập luyện và đến gặp Bác sĩ chuyên khoa hoặc Chuyên viên Vật lý trị liệu để được thăm khám ngay lập tức.</p>
             <a href="index.html" class="btn-emergency">Quay về Trang chủ</a>
         </div>
 
-        <div id="cmdqSection">
-            <div class="card">
-                <div class="card-title"><span class="step-badge">Bước 2</span> Khảo sát chức năng (CMDQ)</div>
-                <p style="margin-bottom: 20px; color: var(--text-muted); font-size: 17px;">Hãy chọn <strong>MỘT</strong> vùng khiến bạn cảm thấy phiền toái nhất trong tuần qua để đánh giá:</p>
-                
-                <select id="painArea" class="select-area">
-                    <option value="Cổ vai gáy">Vùng Cổ & Vai gáy</option>
-                    <option value="Thắt lưng">Lưng dưới (Thắt lưng)</option>
-                    <option value="Cổ tay">Cổ tay & Ngón tay</option>
-                </select>
+        <div id="evaluationSection" class="card">
+            <div class="card-title"><span class="step-badge">Bước 2</span> Khảo sát Tình trạng cơ thể</div>
+            
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('tab-nordic')">1. Nordic</button>
+                <button class="tab-btn" onclick="switchTab('tab-cmdq')">2. Cornell</button>
+                <button class="tab-btn" onclick="switchTab('tab-vas')">3. Chỉ số Đau</button>
+            </div>
 
+            <div id="tab-nordic" class="tab-content active">
+                <div class="info-box">
+                    <span>🔍 Thang đo Nordic (NMQ)</span>
+                    Giúp nhận diện rõ khu vực nào trên cơ thể đang chịu áp lực lớn nhất từ tư thế làm việc.
+                </div>
+                <div class="question-text" style="margin-bottom: 20px;">Trong 7 ngày qua, bạn có cảm thấy mỏi/đau ở các vùng nào sau đây không? (Có thể chọn nhiều)</div>
+                <div class="grid-options">
+                    <input type="checkbox" id="n1" name="nmq" value="Cổ" class="hidden-input"><label for="n1" class="custom-label nordic-label">Cổ</label>
+                    <input type="checkbox" id="n2" name="nmq" value="Hai vai" class="hidden-input"><label for="n2" class="custom-label nordic-label">Hai vai</label>
+                    <input type="checkbox" id="n3" name="nmq" value="Lưng trên" class="hidden-input"><label for="n3" class="custom-label nordic-label">Lưng trên</label>
+                    <input type="checkbox" id="n4" name="nmq" value="Thắt lưng" class="hidden-input"><label for="n4" class="custom-label nordic-label">Lưng dưới (Thắt lưng)</label>
+                    <input type="checkbox" id="n5" name="nmq" value="Khuỷu tay" class="hidden-input"><label for="n5" class="custom-label nordic-label">Hai khuỷu tay</label>
+                    <input type="checkbox" id="n6" name="nmq" value="Cổ tay/Bàn tay" class="hidden-input"><label for="n6" class="custom-label nordic-label">Cổ tay / Bàn tay</label>
+                    <input type="checkbox" id="n7" name="nmq" value="Hông/Đùi" class="hidden-input"><label for="n7" class="custom-label nordic-label">Hông / Đùi</label>
+                    <input type="checkbox" id="n8" name="nmq" value="Hai đầu gối" class="hidden-input"><label for="n8" class="custom-label nordic-label">Hai đầu gối</label>
+                </div>
+                <button type="button" class="btn-submit" onclick="generateReport('nordic')">Phân tích Kết quả Nordic</button>
+            </div>
+
+            <div id="tab-cmdq" class="tab-content">
+                <div class="info-box">
+                    <span>📊 Thang đo Cornell (CMDQ)</span>
+                    Chỉ ra mức độ ảnh hưởng của tình trạng khó chịu đối với khả năng làm việc của bạn.
+                </div>
                 <div class="question-row">
-                    <div class="question-text">A. Tần suất: Tình trạng khó chịu ở vùng này xuất hiện bao nhiêu lần?</div>
+                    <div class="question-text">A. Tần suất: Tình trạng khó chịu chung xuất hiện bao nhiêu lần?</div>
                     <div class="grid-options">
-                        <input type="radio" id="f1" name="freq" value="1" checked><label for="f1">1-2 lần/tuần</label>
-                        <input type="radio" id="f2" name="freq" value="2"><label for="f2">3-4 lần/tuần</label>
-                        <input type="radio" id="f3" name="freq" value="3"><label for="f3">Mỗi ngày 1 lần</label>
-                        <input type="radio" id="f4" name="freq" value="4"><label for="f4">Nhiều lần mỗi ngày</label>
+                        <input type="radio" id="f0" name="freq" value="0" class="hidden-input" checked><label for="f0" class="custom-label cmdq-label">Không bao giờ</label>
+                        <input type="radio" id="f1" name="freq" value="1" class="hidden-input"><label for="f1" class="custom-label cmdq-label">1-2 lần/tuần</label>
+                        <input type="radio" id="f2" name="freq" value="2" class="hidden-input"><label for="f2" class="custom-label cmdq-label">3-4 lần/tuần</label>
+                        <input type="radio" id="f3" name="freq" value="3" class="hidden-input"><label for="f3" class="custom-label cmdq-label">Mỗi ngày</label>
+                        <input type="radio" id="f4" name="freq" value="4" class="hidden-input"><label for="f4" class="custom-label cmdq-label">Nhiều lần/ngày</label>
                     </div>
                 </div>
-
                 <div class="question-row">
-                    <div class="question-text">B. Mức độ: Khi xuất hiện, cảm giác khó chịu đó như thế nào?</div>
+                    <div class="question-text">B. Cường độ: Cảm giác khó chịu đó như thế nào?</div>
                     <div class="grid-options">
-                        <input type="radio" id="s1" name="sev" value="1" checked><label for="s1"> nhẹ</label>
-                        <input type="radio" id="s2" name="sev" value="2"><label for="s2">Đau vừa phải</label>
-                        <input type="radio" id="s3" name="sev" value="3"><label for="s3">Đau nhiều/Dữ dội</label>
+                        <input type="radio" id="s1" name="sev" value="1" class="hidden-input" checked><label for="s1" class="custom-label cmdq-label">Hơi mỏi nhẹ</label>
+                        <input type="radio" id="s2" name="sev" value="2" class="hidden-input"><label for="s2" class="custom-label cmdq-label">Đau vừa phải</label>
+                        <input type="radio" id="s3" name="sev" value="3" class="hidden-input"><label for="s3" class="custom-label cmdq-label">Rất đau đớn</label>
                     </div>
                 </div>
-
                 <div class="question-row">
-                    <div class="question-text">C. Cản trở: Tình trạng này có làm giảm hiệu suất làm việc của bạn không?</div>
+                    <div class="question-text">C. Cản trở: Nó có làm giảm hiệu suất làm việc của bạn không?</div>
                     <div class="grid-options">
-                        <input type="radio" id="i1" name="intf" value="1" checked><label for="i1">Không cản trở gì</label>
-                        <input type="radio" id="i2" name="intf" value="2"><label for="i2">Cản trở nhẹ</label>
-                        <input type="radio" id="i3" name="intf" value="3"><label for="i3">Cản trở đáng kể</label>
+                        <input type="radio" id="i1" name="intf" value="1" class="hidden-input" checked><label for="i1" class="custom-label cmdq-label">Không ảnh hưởng</label>
+                        <input type="radio" id="i2" name="intf" value="2" class="hidden-input"><label for="i2" class="custom-label cmdq-label">Cản trở một chút</label>
+                        <input type="radio" id="i3" name="intf" value="3" class="hidden-input"><label for="i3" class="custom-label cmdq-label">Cản trở đáng kể</label>
                     </div>
                 </div>
+                <button type="button" class="btn-submit" onclick="generateReport('cmdq')">Phân tích Kết quả Cornell</button>
+            </div>
 
-                <button type="button" class="btn-submit" onclick="calculateCMDQ()">Phân tích kết quả</button>
+            <div id="tab-vas" class="tab-content">
+                <div class="info-box">
+                    <span>🌡️ Thang đo Đau (VAS)</span>
+                    Kéo thanh trượt để biểu thị mức độ đau mỏi của bạn NGAY LÚC NÀY (Từ 0 đến 10).
+                </div>
+                <div class="vas-container">
+                    <div class="vas-value-display" id="vasValue">0 / 10</div>
+                    <div style="font-weight: bold; color: var(--text-main); margin-bottom: 20px;" id="vasText">Hoàn toàn không đau</div>
+                    <input type="range" min="0" max="10" value="0" class="vas-slider" id="vasSlider" oninput="updateVasDisplay()">
+                    <div class="vas-labels">
+                        <span>😄 0</span>
+                        <span>😐 5</span>
+                        <span>😭 10</span>
+                    </div>
+                </div>
+                <button type="button" class="btn-submit" onclick="generateReport('vas')">Phân tích Kết quả VAS</button>
             </div>
         </div>
 
         <div id="resultSection" class="card">
-            <h2 style="color: var(--blue-dark); margin-bottom: 20px; font-weight: 800;">BÁO CÁO PHÂN TÍCH TUẦN NÀY</h2>
-            <div id="resultBadge" class="result-badge score-green">Mức độ: NHẸ (Sinh lý bình thường)</div>
-            
-            <div class="result-advice" id="resultAdvice">
-                Cơ thể bạn đang phản ứng bình thường với việc ngồi làm việc lâu. Không có dấu hiệu tổn thương thực thể.<br><br>
-                <strong>📌 Đề xuất lâm sàng:</strong> Hãy duy trì Phác đồ Tuần 1-2 trên hệ thống. Đảm bảo bật Đồng hồ nhắc nhở để đứng dậy vươn vai mỗi 90 phút.
+            <div class="result-header">
+                <h2 style="color: var(--blue-dark); font-size: 32px; font-weight: 900; margin-bottom: 10px;">BẢN BÁO CÁO KẾT QUẢ LÂM SÀNG</h2>
+                <p style="color: var(--text-muted); font-size: 16px;">Phân tích độc lập dựa trên thang đo bạn vừa thực hiện.</p>
             </div>
 
-            <a href="timer.html" class="btn-submit" style="display: block; text-align: center; text-decoration: none;">Đi tới Đồng hồ Vận động</a>
-            <button onclick="resetForm()" style="background: transparent; border: none; color: var(--text-muted); text-decoration: underline; margin-top: 25px; cursor: pointer; font-weight: 700; font-size: 16px;">Làm bài test lại</button>
+            <div class="prescription-box">
+                <h3>📋 Phân tích chi tiết:</h3>
+                <ul class="prescription-list" id="prescriptionList">
+                    </ul>
+            </div>
+            
+            <div id="citationBox" class="source-citation">
+                </div>
+
+            <button onclick="location.reload()" style="background: transparent; border: none; color: var(--text-muted); text-decoration: underline; margin-bottom: 15px; cursor: pointer; font-weight: 700; font-size: 16px; width: 100%; text-align: center;">Đánh giá thang đo khác</button>
+            <a href="timer.html" class="btn-start-timer">Đã hiểu! Đi tới Đồng hồ & Bắt đầu hành trình</a>
         </div>
 
     </div>
 
     <script>
-        // LOGIC DARK MODE (Đồng bộ)
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
             const isDark = document.body.classList.contains('dark-mode');
@@ -230,69 +305,150 @@
             document.getElementById('darkModeToggle').innerText = '☀️';
         }
 
-        // LOGIC SÀNG LỌC CỜ ĐỎ
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        function updateVasDisplay() {
+            const val = document.getElementById('vasSlider').value;
+            document.getElementById('vasValue').innerText = `${val} / 10`;
+            let text = "Hoàn toàn không đau";
+            if (val > 0 && val <= 3) text = "Đau nhẹ, có thể lờ đi";
+            else if (val >= 4 && val <= 6) text = "Đau vừa, gây mất tập trung";
+            else if (val >= 7 && val <= 9) text = "Đau nhiều, cản trở công việc";
+            else if (val == 10) text = "Đau không thể chịu nổi";
+            document.getElementById('vasText').innerText = text;
+        }
+
         function checkRedFlags() {
-            const rf1 = document.querySelector('input[name="rf1"]:checked').value;
-            const rf2 = document.querySelector('input[name="rf2"]:checked').value;
-            const rf3 = document.querySelector('input[name="rf3"]:checked').value;
+            const rfs = document.querySelectorAll('input[name^="rf"]:checked');
+            let hasRedFlag = false;
+            rfs.forEach(radio => { if(radio.value === 'yes') hasRedFlag = true; });
 
             document.getElementById('redFlagSection').style.display = 'none';
 
-            if (rf1 === 'yes' || rf2 === 'yes' || rf3 === 'yes') {
-                // Có Cờ đỏ -> Báo động
+            if (hasRedFlag) {
                 document.getElementById('medicalAlert').style.display = 'block';
             } else {
-                // An toàn -> Chuyển sang bảng CMDQ
-                document.getElementById('cmdqSection').style.display = 'block';
+                document.getElementById('evaluationSection').style.display = 'block';
             }
         }
 
-        // LOGIC TÍNH ĐIỂM THANG CORNELL (CMDQ)
-        function calculateCMDQ() {
-            const freq = parseInt(document.querySelector('input[name="freq"]:checked').value);
-            const sev = parseInt(document.querySelector('input[name="sev"]:checked').value);
-            const intf = parseInt(document.querySelector('input[name="intf"]:checked').value);
-            const area = document.getElementById('painArea').value;
+        // ==========================================
+        // THUẬT TOÁN BÁO CÁO ĐỘC LẬP TỪNG THANG ĐO
+        // ==========================================
+        function generateReport(scaleType) {
+            let adviceHtml = "";
+            let citationHtml = "";
 
-            // Công thức tính điểm CMDQ: Điểm = Tần suất (1-4) x Mức độ (1-3) x Cản trở (1-3). Max = 36.
-            const totalScore = freq * sev * intf;
+            if (scaleType === 'nordic') {
+                let selectedRegions = [];
+                document.querySelectorAll('input[name="nmq"]:checked').forEach(el => selectedRegions.push(el.value));
+                
+                let hasNeck = selectedRegions.includes('Cổ') || selectedRegions.includes('Hai vai') || selectedRegions.includes('Lưng trên');
+                let hasBack = selectedRegions.includes('Thắt lưng');
+                let hasArms = selectedRegions.includes('Khuỷu tay') || selectedRegions.includes('Cổ tay/Bàn tay');
+                let hasLegs = selectedRegions.includes('Hông/Đùi') || selectedRegions.includes('Hai đầu gối');
 
-            document.getElementById('cmdqSection').style.display = 'none';
-            document.getElementById('resultSection').style.display = 'block';
+                if (selectedRegions.length > 0) {
+                    adviceHtml += `<li><strong>Phân tích vùng tổn thương (Thang Nordic):</strong> <span style="color: var(--orange-primary); font-weight: bold;">${selectedRegions.join(", ")}</span>.<br>
+                    <em style="font-weight:600; color: var(--text-muted);"`;
+                    
+                    if (hasNeck) {
+                        adviceHtml += `- <strong>Nhóm Cổ & Vai:</strong> Bạn đang có dấu hiệu quá tải cột sống cổ cao. Việc nhô đầu về phía trước khi nhìn màn hình làm nhóm cơ cổ sau và cơ thang bị kéo căng liên tục, dễ gây cứng gáy.<br>`;
+                    }
+                    if (hasBack) {
+                        adviceHtml += `- <strong>Nhóm Thắt lưng:</strong> Ngồi lâu làm mất đường cong sinh lý tự nhiên, khiến đĩa đệm chịu tải trọng lớn. Cơ mông của bạn có thể bị "ức chế", bắt vùng lưng dưới làm việc bù.<br>`;
+                    }
+                    if (hasArms) {
+                        adviceHtml += `- <strong>Nhóm Chi trên:</strong> Áp lực từ việc gõ phím/chuột sai góc độ đang tạo sức ép lên hệ thống gân gấp - duỗi và rễ thần kinh ống cổ tay.<br>`;
+                    }
+                    if (hasLegs) {
+                        adviceHtml += `- <strong>Nhóm Chi dưới:</strong> Tư thế gập hông 90 độ liên tục làm cơ thắt lưng chậu bị co ngắn, ảnh hưởng trực tiếp đến khung chậu.<br>`;
+                    }
+                    adviceHtml += `</li>`;
+                } else {
+                    adviceHtml += `<li><strong>Phân tích vùng tổn thương (Thang Nordic):</strong> Không phát hiện vùng đau khu trú. Bạn có thể yên tâm tập luyện để duy trì thể trạng.</li>`;
+                }
 
-            const badge = document.getElementById('resultBadge');
-            const advice = document.getElementById('resultAdvice');
+                let focusExercises = [];
+                if(hasNeck) focusExercises.push("Kéo giãn cơ thang/nâng vai", "Gập duỗi cổ", "Chin Tuck");
+                if(hasBack) focusExercises.push("Bắc cầu", "Con mèo - Con bò", "Gập thân & Ưỡn người");
+                if(hasArms) focusExercises.push("Xoay cổ tay");
+                if(hasLegs) focusExercises.push("Lunge", "Đứng lên xoay hông");
 
-            if (totalScore <= 6) {
-                badge.className = "result-badge score-green";
-                badge.innerText = `Vùng ${area}: BÌNH THƯỜNG / NHẸ`;
-                advice.innerHTML = `Mức điểm rủi ro: <strong>${totalScore}/36</strong>.<br>Cơ thể bạn đang phản ứng hoàn toàn sinh lý với sự mệt mỏi do tư thế làm việc. Không có dấu hiệu chèn ép hay tổn thương.<br><br><strong>📌 Đề xuất:</strong> Duy trì Phác đồ Tuần 1 và Tuần 2. Khởi động Đồng hồ nhắc nhở (Interval 90 phút) để kích hoạt cơ bắp ngăn ngừa ức chế thần kinh cơ.`;
+                if (focusExercises.length > 0) {
+                    adviceHtml += `<li><strong>💡 Lời khuyên Ứng dụng:</strong> Dù bạn đang ở bất kỳ tuần nào trong Lộ trình, khi Đồng hồ đếm ngược gọi tên các bài tập như<strong style="color: var(--orange-primary);">${focusExercises.join(", ")}</strong>hãy thực hiện với 120% sự tập trung. Tập chậm hơn, hít thở sâu và giữ thế căng cơ lâu hơn 5 giây. Đó là các bài tập khóa chốt dành riêng cho bạn!</li>`;
+                } else {
+                    adviceHtml += `<li><strong>💡 Lời khuyên Ứng dụng:</strong> Cơ thể là một chuỗi động học liên kết. Việc tuân thủ tập luyện toàn thân theo phác đồ 4 tuần là cách tốt nhất để bảo vệ sức khỏe và phòng ngừa đau mỏi.</li>`;
+                }
+
             } 
-            else if (totalScore <= 18) {
-                badge.className = "result-badge score-yellow";
-                badge.innerText = `Vùng ${area}: QUÁ TẢI TRUNG BÌNH`;
-                advice.innerHTML = `Mức điểm rủi ro: <strong>${totalScore}/36</strong>.<br>Hệ thống cơ bắp vùng ${area} của bạn đang bị quá tải tĩnh kéo dài, dẫn đến hiện tượng co thắt cơ bảo vệ và bắt đầu ảnh hưởng nhẹ đến năng suất làm việc.<br><br><strong>📌 Đề xuất:</strong><br>- Rút ngắn thời gian ngồi tĩnh xuống mức <strong>45-60 phút/lần</strong>.<br>- Tập trung vào các bài tập kéo giãn sâu (Phác đồ Tuần 2).<br>- Điều chỉnh lại độ cao màn hình và ghế ngồi (Xem Góc Kiến Thức).`;
+            else if (scaleType === 'cmdq') {
+                let fText = document.querySelector('input[name="freq"]:checked').nextElementSibling.innerText;
+                let sText = document.querySelector('input[name="sev"]:checked').nextElementSibling.innerText;
+                let iText = document.querySelector('input[name="intf"]:checked').nextElementSibling.innerText;
+                
+                let freqVal = parseInt(document.querySelector('input[name="freq"]:checked').value);
+                let sevVal = parseInt(document.querySelector('input[name="sev"]:checked').value);
+                let intfVal = parseInt(document.querySelector('input[name="intf"]:checked').value);
+
+                let cmdqAssessment = "";
+                if (freqVal === 0) {
+                    cmdqAssessment = "Hệ cơ xương khớp ổn định, công việc không bị cản trở bởi cơn đau mỏi. Tiếp tục duy trì vận động bảo trì cơ thể.";
+                }
+                else if (intfVal === 3 || sevVal === 3) {
+                    cmdqAssessment = "Mức độ cực kỳ nghiêm trọng. Cơn đau đang trực tiếp làm giảm năng suất làm việc của bạn. Hãy ưu tiên nghỉ ngơi xen kẽ, chỉ thực hiện các bài tập giãn cơ tĩnh (Tuần 2) thật chậm rãi và tránh tập sức mạnh lúc này.";
+                }
+                else if (freqVal >= 2 && sevVal >= 2) {
+                    cmdqAssessment = "Tình trạng đau mỏi mang tính chu kỳ và đang tích tụ dần. Nếu không can thiệp bằng vận động để cắt đứt cơn đau này, cơ thể sẽ bước vào trạng thái đau mãn tính. Hãy khởi động Đồng hồ ngay.";
+                }
+                else {
+                    cmdqAssessment = "Dấu hiệu mỏi cơ sinh lý do duy trì tư thế tĩnh quá lâu. Hoàn toàn có thể khắc phục triệt để bằng việc tuân thủ lịch tập luyện nhẹ nhàng đều đặn.";
+                }
+
+                adviceHtml += `<li><strong>Đánh giá Mức độ ảnh hưởng (Thang Cornell):</strong>
+                - Tần suất xuất hiện: ${fText}<br>
+                - Cường độ khó chịu: ${sText}<br>
+                - Mức độ cản trở công việc: ${iText}</li>
+                <li><strong>Nhận định Lâm sàng:</strong> ${cmdqAssessment}</li>`;
+
             } 
-            else {
-                badge.className = "result-badge score-red";
-                badge.innerText = `Vùng ${area}: NGUY CƠ CAO`;
-                advice.innerHTML = `Mức điểm rủi ro: <strong>${totalScore}/36</strong>.<br>Tình trạng đau mỏi đang gây cản trở đáng kể đến chức năng sinh hoạt và làm việc. Mặc dù không có Cờ Đỏ, nhưng bạn đang đối diện với nguy cơ rối loạn cơ xương khớp mãn tính (MSDs).<br><br><strong>📌 Đề xuất:</strong><br>- Nên kết hợp chườm ấm thư giãn cơ vào buổi tối.<br>- Chuyển sang thực hành <strong>Phác đồ Tuần 3 (Tăng cường sức mạnh cơ lõi)</strong> để lấy lại sự ổn định cho các khớp.<br>- Nếu không thuyên giảm sau 1 tuần áp dụng, cần thăm khám chuyên khoa.`;
+            else if (scaleType === 'vas') {
+                let vas = parseInt(document.getElementById('vasSlider').value);
+                let vasText = "Không đau";
+                let vasAdvice = "";
+
+                if(vas === 0) {
+                    vasText = "Không đau";
+                    vasAdvice = "Cơ thể bạn đang ở trạng thái thư giãn tuyệt vời. Hãy tiếp tục duy trì tư thế tốt và thói quen vận động theo phác đồ để phòng ngừa.";
+                }
+                else if(vas >= 1 && vas <= 3) {
+                    vasText = "Đau nhẹ";
+                    vasAdvice = "Đây là tín hiệu mỏi cơ sinh lý, hoàn toàn có thể lờ đi và không cản trở chức năng. Bạn nên thực hiện các bài tập giãn cơ nhẹ nhàng trên hệ thống để tăng tuần hoàn máu, giúp cơ bắp phục hồi nhanh chóng.";
+                }
+                else if(vas >= 4 && vas <= 6) {
+                    vasText = "Đau vừa";
+                    vasAdvice = "Cơn đau/mỏi đang ở mức gây mất tập trung và làm giảm hiệu suất làm việc. Bạn nên tạm dừng công việc hiện tại, đứng dậy thực hiện các bài tập kéo giãn sâu (Đặc biệt là Phác đồ Tuần 2) và kết hợp chườm ấm vùng đau.";
+                }
+                else if(vas >= 7 && vas <= 10) {
+                    vasText = "Đau dữ dội";
+                    vasAdvice = "Mức độ đau báo động, cản trở đáng kể đến khả năng vận động. Hãy NGHỈ NGƠI TUYỆT ĐỐI ở tư thế giảm áp lực cho cột sống. KHÔNG cố gắng thực hiện các bài tập trên hệ thống lúc này. Nếu cơn đau kéo dài, hãy đến gặp bác sĩ chuyên khoa.";
+                }
+
+                adviceHtml += `<li><strong>Cường độ đau hiện tại (Thang VAS):</strong> <strong style="color: var(--danger); font-size: 22px;">${vas}/10</strong> (${vasText}).</li>
+                <li><strong>Khuyến nghị Xử trí:</strong> ${vasAdvice}</li>`;
+
             }
-        }
 
-        // Làm lại test
-        function resetForm() {
-            document.getElementById('resultSection').style.display = 'none';
-            document.getElementById('medicalAlert').style.display = 'none';
-            document.getElementById('redFlagSection').style.display = 'block';
+            document.getElementById('prescriptionList').innerHTML = adviceHtml;
+            document.getElementById('citationBox').innerText = citationHtml;
             
-            // Reset radio buttons về mặc định
-            document.getElementById('rf1_no').checked = true;
-            document.getElementById('rf2_no').checked = true;
-            document.getElementById('rf3_no').checked = true;
-            document.getElementById('f1').checked = true;
-            document.getElementById('s1').checked = true;
-            document.getElementById('i1').checked = true;
+            document.getElementById('evaluationSection').style.display = 'none';
+            document.getElementById('resultSection').style.display = 'block';
         }
     </script>
 </body>
