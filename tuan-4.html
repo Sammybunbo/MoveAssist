@@ -42,15 +42,26 @@
         .time-block:last-child { margin-bottom: 0; }
         .time-label { display: inline-block; background-color: var(--blue-light); color: var(--blue-primary); font-weight: bold; padding: 6px 18px; border-radius: 20px; margin-bottom: 15px; font-size: 16px;}
         
+        /* CẬP NHẬT CSS LAYOUT HÌNH ẢNH */
         .task-list { list-style: none; }
-        .task-list > li { position: relative; padding-left: 25px; margin-bottom: 15px; font-size: 17px; font-weight: 500;}
-        .task-list > li::before { content: "🔹"; position: absolute; left: 0; color: var(--blue-primary); }
+        .task-list > li { position: relative; padding-left: 28px; margin-bottom: 30px; font-size: 17px; font-weight: 500; border-bottom: 1px solid var(--border-color); padding-bottom: 25px;}
+        .task-list > li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0;}
+        .task-list > li::before { content: "🔹"; position: absolute; left: 0; top: 2px; color: var(--blue-primary); font-size: 18px;}
+        
+        .task-layout { display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; width: 100%;}
+        .task-content { flex: 1; min-width: 250px; }
+        .task-image { width: 240px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); border: 1px solid var(--border-color); flex-shrink: 0; transition: 0.3s; background: transparent;}
+        .task-image img { width: 100%; height: auto; display: block; object-fit: contain; }
         
         .sub-list { list-style-type: disc; margin-top: 8px; margin-left: 20px; color: var(--text-muted); }
         .sub-list li { margin-bottom: 8px; }
 
         .fade-in { opacity: 0; transform: translateY(30px); transition: 0.6s ease-out; }
         .fade-in.show { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 600px) {
+            .task-image { width: 100%; max-width: 100%; margin-top: 10px; }
+        }
     </style>
 </head>
 <body>
@@ -73,31 +84,64 @@
                 <div class="time-label">🌅 Buổi Sáng</div>
                 <ul class="task-list">
                     <li>
-                        <strong style="color: var(--text-main);">Bài tập ấn cằm (Chin Tuck):</strong> 
-                        <ul class="sub-list">
-                            <li>Đứng hoặc ngồi thẳng lưng tựa vào ghế.</li>
-                            <li>Từ từ thu cằm vào trong sao cho phần sau cổ được kéo dài ra và chạm sát vào ghế.</li>
-                            <li><strong style="color: var(--orange-primary);">Giữ 30 giây, lặp lại 10 lần.</strong></li>
-                        </ul>
+                        <div class="task-layout">
+                            <div class="task-content">
+                                <strong style="color: var(--text-main);">Bài tập ấn cằm (Chin Tuck):</strong> 
+                                <ul class="sub-list">
+                                    <li>Đứng hoặc ngồi thẳng lưng tựa vào ghế.</li>
+                                    <li>Từ từ thu cằm vào trong sao cho phần sau cổ được kéo dài ra và chạm sát vào ghế.</li>
+                                    <li><strong style="color: var(--orange-primary);">Giữ 30 giây, lặp lại 10 lần.</strong></li>
+                                </ul>
+                            </div>
+                            <div class="task-image"><img src="images/Bản sao của ấn cầm.jpg" alt="Hình minh họa"></div>
+                        </div>
                     </li>
-                    <li>Đứng lên và di chuyển. Tối thiểu 1 phút.</li>
-                    <li>Đứng lên nâng cao đùi 15 lần mỗi bên có kết hợp xoay cổ tay.</li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Đứng lên và di chuyển. Tối thiểu 1 phút.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Đứng lên nâng cao đùi 15 lần mỗi bên có kết hợp xoay cổ tay.</div>
+                            <div class="task-image"><img src="images/nâng cao đùi.jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
                 </ul>
             </div>
 
             <div class="time-block">
                 <div class="time-label">☀️ Buổi Chiều</div>
                 <ul class="task-list">
-                    <li>Đứng lên và di chuyển. Tối thiểu 1 phút.</li>
-                    <li>Đứng lên gót chạm mông 15 lần mỗi bên có kết hợp xoay cổ tay.</li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Đứng lên và di chuyển. Tối thiểu 1 phút.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Đứng lên gót chạm mông 15 lần mỗi bên có kết hợp xoay cổ tay.</div>
+                            <div class="task-image"><img src="images/Bản sao của gót chạm mông.jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
                 </ul>
             </div>
 
             <div class="time-block">
                 <div class="time-label">🌙 Buổi Tối</div>
                 <ul class="task-list">
-                    <li>Plank: Chống hai khuỷu tay và mũi chân xuống sàn, giữ người thành một đường thẳng. Giữ tối thiểu 30s, lặp lại 5 lần.</li>
-                    <li>Plank nghiêng: Nằm nghiêng, chống khuỷu tay dưới vai, nâng hông lên thành đường thẳng. Giữ tối thiểu 30s, lặp lại 5 lần mỗi bên.</li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Plank: Chống hai khuỷu tay và mũi chân xuống sàn, giữ người thành một đường thẳng. Giữ tối thiểu 30s, lặp lại 5 lần.</div>
+                            <div class="task-image"><img src="images/Plank .jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Plank nghiêng: Nằm nghiêng, chống khuỷu tay dưới vai, nâng hông lên thành đường thẳng. Giữ tối thiểu 30s, lặp lại 5 lần mỗi bên.</div>
+                            <div class="task-image"><img src="images/Plank nghiêng.jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -108,23 +152,46 @@
             <div class="time-block">
                 <div class="time-label">🌅 Buổi Sáng</div>
                 <ul class="task-list">
-                    <li>Bài tập Y-W (Y-W Raises): Ngồi giơ hai tay tạo thành chữ Y, sau đó kéo khuỷu tay xuống sườn tạo thành chữ W, ép chặt hai bả vai vào nhau.</li>
-                    <li>Đứng lên và di chuyển. Tối thiểu 1 phút.</li>
-                    <li>Đứng lên gót chạm mông 15 lần mỗi bên có kết hợp xoay cổ tay.</li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Bài tập Y-W (Y-W Raises): Ngồi giơ hai tay tạo thành chữ Y, sau đó kéo khuỷu tay xuống sườn tạo thành chữ W, ép chặt hai bả vai vào nhau.</div>
+                            <div class="task-image"><img src="images/YW.jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Đứng lên và di chuyển. Tối thiểu 1 phút.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Đứng lên gót chạm mông 15 lần mỗi bên có kết hợp xoay cổ tay.</div>
+                            <div class="task-image"><img src="images/gót chạm mông.jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
                 </ul>
             </div>
 
             <div class="time-block">
                 <div class="time-label">☀️ Buổi Chiều</div>
                 <ul class="task-list">
-                    <li>Đứng lên và di chuyển. Tối thiểu 1 phút.</li>
                     <li>
-                        <strong style="color: var(--text-main);">Bài tập ấn cằm (Chin Tuck):</strong> 
-                        <ul class="sub-list">
-                            <li>Đứng hoặc ngồi thẳng lưng tựa vào ghế.</li>
-                            <li>Từ từ thu cằm vào trong sao cho phần sau cổ kéo dài ra và chạm sát vào ghế.</li>
-                            <li><strong style="color: var(--orange-primary);">Giữ 30 giây, lặp lại 5 lần.</strong></li>
-                        </ul>
+                        <div class="task-layout">
+                            <div class="task-content">Đứng lên và di chuyển. Tối thiểu 1 phút.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">
+                                <strong style="color: var(--text-main);">Bài tập ấn cằm (Chin Tuck):</strong> 
+                                <ul class="sub-list">
+                                    <li>Đứng hoặc ngồi thẳng lưng tựa vào ghế.</li>
+                                    <li>Từ từ thu cằm vào trong sao cho phần sau cổ kéo dài ra và chạm sát vào ghế.</li>
+                                    <li><strong style="color: var(--orange-primary);">Giữ 30 giây, lặp lại 5 lần.</strong></li>
+                                </ul>
+                            </div>
+                            <div class="task-image"><img src="images/Bản sao của ấn cầm.jpg" alt="Hình minh họa"></div>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -132,14 +199,24 @@
             <div class="time-block">
                 <div class="time-label">🌙 Buổi Tối</div>
                 <ul class="task-list">
-                    <li>Con bọ chết (Dead bug): Nằm ngửa, giơ hai tay lên trời, co hai chân vuông góc. Giữ tối thiểu 30s lặp lại 5 lần.</li>
                     <li>
-                        <strong style="color: var(--text-main);">Con chim chó (Bird Dog):</strong> 
-                        <ul class="sub-list">
-                            <li>Chống hai tay và hai đầu gối xuống sàn.</li>
-                            <li>Duỗi tay trái về phía trước và chân phải về phía sau.</li>
-                            <li>Giữ cơ thể thăng bằng, không để hông bị nghiêng. Giữ lại 20s/10 lần, làm lần lượt từng bên.</li>
-                        </ul>
+                        <div class="task-layout">
+                            <div class="task-content">Con bọ chết (Dead bug): Nằm ngửa, giơ hai tay lên trời, co hai chân vuông góc. Giữ tối thiểu 30s lặp lại 5 lần.</div>
+                            <div class="task-image"><img src="images/Con bọ chết.jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">
+                                <strong style="color: var(--text-main);">Con chim chó (Bird Dog):</strong> 
+                                <ul class="sub-list">
+                                    <li>Chống hai tay và hai đầu gối xuống sàn.</li>
+                                    <li>Duỗi tay trái về phía trước và chân phải về phía sau.</li>
+                                    <li>Giữ cơ thể thăng bằng, không để hông bị nghiêng. Giữ lại 20s/10 lần, làm lần lượt từng bên.</li>
+                                </ul>
+                            </div>
+                            <div class="task-image"><img src="images/Chim chó.jpg" alt="Hình minh họa"></div>
+                        </div>
                     </li>
                 </ul>
             </div>

@@ -42,15 +42,25 @@
         .time-block:last-child { margin-bottom: 0; }
         .time-label { display: inline-block; background-color: var(--blue-light); color: var(--blue-primary); font-weight: bold; padding: 6px 18px; border-radius: 20px; margin-bottom: 15px; font-size: 16px;}
         
+        /* CẬP NHẬT CSS LAYOUT HÌNH ẢNH */
         .task-list { list-style: none; }
-        .task-list > li { position: relative; padding-left: 25px; margin-bottom: 15px; font-size: 17px; font-weight: 500;}
-        .task-list > li::before { content: "🔹"; position: absolute; left: 0; color: var(--blue-primary); }
+        .task-list > li { position: relative; padding-left: 28px; margin-bottom: 30px; font-size: 17px; font-weight: 500; border-bottom: 1px solid var(--border-color); padding-bottom: 25px;}
+        .task-list > li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0;}
+        .task-list > li::before { content: "🔹"; position: absolute; left: 0; top: 2px; color: var(--blue-primary); font-size: 18px;}
         
+        .task-layout { display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; width: 100%;}
+        .task-content { flex: 1; min-width: 250px; }
+        .task-image { width: 240px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); border: 1px solid var(--border-color); flex-shrink: 0; transition: 0.3s; background: transparent;}
+        .task-image img { width: 100%; height: auto; display: block; object-fit: contain; }
         .sub-list { list-style-type: disc; margin-top: 8px; margin-left: 20px; color: var(--text-muted); }
         .sub-list li { margin-bottom: 8px; }
 
         .fade-in { opacity: 0; transform: translateY(30px); transition: 0.6s ease-out; }
         .fade-in.show { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 600px) {
+            .task-image { width: 100%; max-width: 100%; margin-top: 10px; }
+        }
     </style>
 </head>
 <body>
@@ -72,23 +82,46 @@
             <div class="time-block">
                 <div class="time-label">🌅 Buổi Sáng</div>
                 <ul class="task-list">
-                    <li>Kháng lực 2 hướng (trước/sau) – Đặt tay lên trán/gáy và ấn nhẹ đầu vào lòng bàn tay, bàn tay đẩy trong khi dùng cơ cổ để giữ đầu đứng yên. Giữ 20 giây, lặp lại 3 lần với cả 2 hướng x 2 hiệp, mỗi hiệp nghỉ 30s.</li>
-                    <li>Đứng lên và di chuyển. Tối thiểu 1 phút.</li>
-                    <li>Gập bụng ở tư thế ngồi (ngồi thẳng lưng, co và giữ 2 chân lên sao cho 2 gối hướng về phía mặt). Giữ 5 giây, lặp 3 lần x 3 hiệp, mỗi hiệp nghỉ 30s.</li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Kháng lực 2 hướng (trước/sau) – Đặt tay lên trán/gáy và ấn nhẹ đầu vào lòng bàn tay, bàn tay đẩy trong khi dùng cơ cổ để giữ đầu đứng yên. Giữ 20 giây, lặp lại 3 lần với cả 2 hướng x 2 hiệp, mỗi hiệp nghỉ 30s.</div>
+                            <div class="task-image"><img src="images/giữ đầu đề kháng trước - sau.jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Đứng lên và di chuyển. Tối thiểu 1 phút.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Gập bụng ở tư thế ngồi (ngồi thẳng lưng, co và giữ 2 chân lên sao cho 2 gối hướng về phía mặt). Giữ 5 giây, lặp 3 lần x 3 hiệp, mỗi hiệp nghỉ 30s.</div>
+                            <div class="task-image"><img src="images/Gập bụng.jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
                 </ul>
             </div>
 
             <div class="time-block">
                 <div class="time-label">☀️ Buổi Chiều</div>
                 <ul class="task-list">
-                    <li>Đứng lên và di chuyển. Tối thiểu 1 phút.</li>
                     <li>
-                        <strong style="color: var(--text-main);">Ngồi gập lưng tới trước:</strong> 
-                        <ul class="sub-list">
-                            <li>Chuẩn bị: Ngồi trên ghế, lưng thẳng, chân vuông góc với sàn.</li>
-                            <li>Thực hiện: Hai tay đồng thời đưa và gập thân về phía trước. Giữ 5 giây sau đó trở về ban đầu. Có thể cầm thêm tạ/chai nước.</li>
-                            <li><strong style="color: var(--orange-primary);">Lặp 3 lần x 3 hiệp, mỗi hiệp nghỉ 30s.</strong></li>
-                        </ul>
+                        <div class="task-layout">
+                            <div class="task-content">Đứng lên và di chuyển. Tối thiểu 1 phút.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">
+                                <strong style="color: var(--text-main);">Ngồi gập lưng tới trước:</strong> 
+                                <ul class="sub-list">
+                                    <li>Chuẩn bị: Ngồi trên ghế, lưng thẳng, chân vuông góc với sàn.</li>
+                                    <li>Thực hiện: Hai tay đồng thời đưa và gập thân về phía trước. Giữ 5 giây sau đó trở về ban đầu. Có thể cầm thêm tạ/chai nước.</li>
+                                    <li><strong style="color: var(--orange-primary);">Lặp 3 lần x 3 hiệp, mỗi hiệp nghỉ 30s.</strong></li>
+                                </ul>
+                            </div>
+                            <div class="task-image"><img src="images/Gập lưng khi ngồi.jpg" alt="Hình minh họa"></div>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -97,15 +130,25 @@
                 <div class="time-label">🌙 Buổi Tối</div>
                 <ul class="task-list">
                     <li>
-                        <strong style="color: var(--text-main);">Bắc cầu (có thể tăng tiến 1 chân):</strong> 
-                        <ul class="sub-list">
-                            <li>Nằm ngửa, co gối, bàn chân đặt trên sàn.</li>
-                            <li>Ấn gót chân, nâng hông lên cao cho đến khi vai, hông và đầu gối thẳng hàng.</li>
-                            <li>Thắt chặt cơ mông và cơ bụng ở đỉnh động tác.</li>
-                            <li><strong style="color: var(--orange-primary);">Giữ 20 giây, lặp lại 5 lần x 2 hiệp, nghỉ 30s mỗi hiệp.</strong></li>
-                        </ul>
+                        <div class="task-layout">
+                            <div class="task-content">
+                                <strong style="color: var(--text-main);">Bắc cầu (có thể tăng tiến 1 chân):</strong> 
+                                <ul class="sub-list">
+                                    <li>Nằm ngửa, co gối, bàn chân đặt trên sàn.</li>
+                                    <li>Ấn gót chân, nâng hông lên cao cho đến khi vai, hông và đầu gối thẳng hàng.</li>
+                                    <li>Thắt chặt cơ mông và cơ bụng ở đỉnh động tác.</li>
+                                    <li><strong style="color: var(--orange-primary);">Giữ 20 giây, lặp lại 5 lần x 2 hiệp, nghỉ 30s mỗi hiệp.</strong></li>
+                                </ul>
+                            </div>
+                            <div class="task-image"><img src="images/20260401_124501.jpg" alt="Hình minh họa"></div>
+                        </div>
                     </li>
-                    <li>Superman: Nằm sấp lần lượt nâng tay (P) và chân (T) lên. Giữ 20s/10 lần, làm lần lượt từng bên.</li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Superman: Nằm sấp lần lượt nâng tay (P) và chân (T) lên. Giữ 20s/10 lần, làm lần lượt từng bên.</div>
+                            <div class="task-image"><img src="images/20260401_124541.jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -116,17 +159,38 @@
             <div class="time-block">
                 <div class="time-label">🌅 Buổi Sáng</div>
                 <ul class="task-list">
-                    <li>Kháng lực 2 hướng (nghiêng trái/phải) – Đặt tay lên hai bên thái dương và ấn nhẹ đầu vào tay. Giữ 20 giây, lặp lại 3 lần x 2 hiệp, nghỉ 30s.</li>
-                    <li>Đứng lên và di chuyển. Tối thiểu 1 phút.</li>
-                    <li>Đứng lên ngồi xuống (5 lần x 3 hiệp, mỗi hiệp nghỉ 30s).</li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Kháng lực 2 hướng (nghiêng trái/phải) – Đặt tay lên hai bên thái dương và ấn nhẹ đầu vào tay. Giữ 20 giây, lặp lại 3 lần x 2 hiệp, nghỉ 30s.</div>
+                            <div class="task-image"><img src="images/giữ đầu kháng lực trái-phai.jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Đứng lên và di chuyển. Tối thiểu 1 phút.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Đứng lên ngồi xuống (5 lần x 3 hiệp, mỗi hiệp nghỉ 30s).</div>
+                        </div>
+                    </li>
                 </ul>
             </div>
 
             <div class="time-block">
                 <div class="time-label">☀️ Buổi Chiều</div>
                 <ul class="task-list">
-                    <li>Đứng lên và di chuyển. Tối thiểu 1 phút.</li>
-                    <li>Xoay cổ 3 vòng mỗi bên.</li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Đứng lên và di chuyển. Tối thiểu 1 phút.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Xoay cổ 3 vòng mỗi bên.</div>
+                        </div>
+                    </li>
                 </ul>
             </div>
 
@@ -134,12 +198,17 @@
                 <div class="time-label">🌙 Buổi Tối</div>
                 <ul class="task-list">
                     <li>
-                        <strong style="color: var(--text-main);">Tập Lunge:</strong> 
-                        <ul class="sub-list">
-                            <li>Đứng thẳng, bước một chân lên trước. Hạ người xuống cho đến khi hai đầu gối tạo góc khoảng 90 độ.</li>
-                            <li>Đẩy người lên trở lại vị trí ban đầu. Đổi chân.</li>
-                            <li><strong style="color: var(--orange-primary);">Thực hiện 5 lần x 3 hiệp, mỗi hiệp nghỉ 30s.</strong></li>
-                        </ul>
+                        <div class="task-layout">
+                            <div class="task-content">
+                                <strong style="color: var(--text-main);">Tập Lunge:</strong> 
+                                <ul class="sub-list">
+                                    <li>Đứng thẳng, bước một chân lên trước. Hạ người xuống cho đến khi hai đầu gối tạo góc khoảng 90 độ.</li>
+                                    <li>Đẩy người lên trở lại vị trí ban đầu. Đổi chân.</li>
+                                    <li><strong style="color: var(--orange-primary);">Thực hiện 5 lần x 3 hiệp, mỗi hiệp nghỉ 30s.</strong></li>
+                                </ul>
+                            </div>
+                            <div class="task-image"><img src="images/lunge.jpg" alt="Hình minh họa"></div>
+                        </div>
                     </li>
                 </ul>
             </div>

@@ -42,15 +42,25 @@
         .time-block:last-child { margin-bottom: 0; }
         .time-label { display: inline-block; background-color: var(--blue-light); color: var(--blue-primary); font-weight: bold; padding: 6px 18px; border-radius: 20px; margin-bottom: 15px; font-size: 16px;}
         
+        /* CẬP NHẬT CSS LAYOUT HÌNH ẢNH */
         .task-list { list-style: none; }
-        .task-list > li { position: relative; padding-left: 25px; margin-bottom: 15px; font-size: 17px; font-weight: 500;}
-        .task-list > li::before { content: "🔹"; position: absolute; left: 0; color: var(--blue-primary); }
+        .task-list > li { position: relative; padding-left: 28px; margin-bottom: 30px; font-size: 17px; font-weight: 500; border-bottom: 1px solid var(--border-color); padding-bottom: 25px;}
+        .task-list > li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0;}
+        .task-list > li::before { content: "🔹"; position: absolute; left: 0; top: 2px; color: var(--blue-primary); font-size: 18px;}
         
+        .task-layout { display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; width: 100%;}
+        .task-content { flex: 1; min-width: 250px; }
+        .task-image { width: 240px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); border: 1px solid var(--border-color); flex-shrink: 0; transition: 0.3s; background: transparent;}
+        .task-image img { width: 100%; height: auto; display: block; object-fit: contain; }     
         .sub-list { list-style-type: disc; margin-top: 8px; margin-left: 20px; color: var(--text-muted); }
         .sub-list li { margin-bottom: 8px; }
 
         .fade-in { opacity: 0; transform: translateY(30px); transition: 0.6s ease-out; }
         .fade-in.show { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 600px) {
+            .task-image { width: 100%; max-width: 100%; margin-top: 10px; }
+        }
     </style>
 </head>
 <body>
@@ -74,16 +84,30 @@
                 <div class="time-label">🌅 Buổi Sáng</div>
                 <ul class="task-list">
                     <li>
-                        <strong style="color: var(--text-main);">Kéo giãn cơ nâng vai (Levator Scapulae Stretch):</strong> 
-                        <ul class="sub-list">
-                            <li>Tư thế chuẩn bị: Ngồi thẳng lưng trên ghế, hai chân đặt phẳng trên sàn. Giữ lưng thẳng, vai thả lỏng và mắt nhìn thẳng, chậu ở vị thế trung tính.</li>
-                            <li>Cố định vai: Dùng tay bên không kéo giãn bám chặt vào mép ghế hoặc đặt dưới mông để giữ vai cố định.</li>
-                            <li>Thực hiện: Nhẹ nhàng nghiêng đầu sang bên đối diện. Dùng tay còn lại ấn nhẹ để tăng độ căng. Chỉ dùng lực rất nhẹ, không kéo giật.</li>
-                            <li><strong style="color: var(--orange-primary);">Giữ 30 giây / Lặp lại 3 lần mỗi bên, nghỉ 30s mỗi lần.</strong></li>
-                        </ul>
+                        <div class="task-layout">
+                            <div class="task-content">
+                                <strong style="color: var(--text-main);">Kéo giãn cơ nâng vai (Levator Scapulae Stretch):</strong> 
+                                <ul class="sub-list">
+                                    <li>Tư thế chuẩn bị: Ngồi thẳng lưng trên ghế, hai chân đặt phẳng trên sàn. Giữ lưng thẳng, vai thả lỏng và mắt nhìn thẳng, chậu ở vị thế trung tính.</li>
+                                    <li>Cố định vai: Dùng tay bên không kéo giãn bám chặt vào mép ghế hoặc đặt dưới mông để giữ vai cố định.</li>
+                                    <li>Thực hiện: Nhẹ nhàng nghiêng đầu sang bên đối diện. Dùng tay còn lại ấn nhẹ để tăng độ căng. Chỉ dùng lực rất nhẹ, không kéo giật.</li>
+                                    <li><strong style="color: var(--orange-primary);">Giữ 30 giây / Lặp lại 3 lần mỗi bên, nghỉ 30s mỗi lần.</strong></li>
+                                </ul>
+                            </div>
+                            <div class="task-image"><img src="images/kéo giãn cơ nâng vai.jpg" alt="Hình minh họa"></div>
+                        </div>
                     </li>
-                    <li>Đứng lên và di chuyển (đi uống nước, vệ sinh,...). Tối thiểu 1 phút.</li>
-                    <li>Vươn mình (5 lần x 3 hiệp, mỗi hiệp nghỉ 30s).</li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Đứng lên và di chuyển (đi uống nước, vệ sinh,...). Tối thiểu 1 phút.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Vươn mình (5 lần x 3 hiệp, mỗi hiệp nghỉ 30s).</div>
+                            <div class="task-image"><img src="images/vươn mình.jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
                 </ul>
             </div>
 
@@ -91,30 +115,49 @@
                 <div class="time-label">☀️ Buổi Chiều</div>
                 <ul class="task-list">
                     <li>
-                        <strong style="color: var(--text-main);">Kéo giãn cơ thang trên (Upper Trapezius Stretch):</strong> 
-                        <ul class="sub-list">
-                            <li>Ngồi thẳng lưng, hai chân phẳng trên sàn, vai thả lỏng.</li>
-                            <li>Xoay đầu sang một bên khoảng 45 độ, cúi đầu xuống như nhìn vào nách.</li>
-                            <li>Dùng tay cùng phía nhẹ nhàng ấn đầu xuống.</li>
-                            <li><strong style="color: var(--orange-primary);">Giữ 30 giây / Lặp lại 3 lần mỗi bên, nghỉ 30s mỗi lần.</strong></li>
-                        </ul>
+                        <div class="task-layout">
+                            <div class="task-content">
+                                <strong style="color: var(--text-main);">Kéo giãn cơ thang trên (Upper Trapezius Stretch):</strong> 
+                                <ul class="sub-list">
+                                    <li>Ngồi thẳng lưng, hai chân phẳng trên sàn, vai thả lỏng.</li>
+                                    <li>Xoay đầu sang một bên khoảng 45 độ, cúi đầu xuống như nhìn vào nách.</li>
+                                    <li>Dùng tay cùng phía nhẹ nhàng ấn đầu xuống.</li>
+                                    <li><strong style="color: var(--orange-primary);">Giữ 30 giây / Lặp lại 3 lần mỗi bên, nghỉ 30s mỗi lần.</strong></li>
+                                </ul>
+                            </div>
+                            <div class="task-image"><img src="images/kéo giãn cơ thang.jpg" alt="Hình minh họa"></div>
+                        </div>
                     </li>
-                    <li>Đứng lên và di chuyển. Tối thiểu 1 phút.</li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Đứng lên và di chuyển. Tối thiểu 1 phút.</div>
+                        </div>
+                    </li>
                 </ul>
             </div>
 
             <div class="time-block">
                 <div class="time-label">🌙 Buổi Tối</div>
                 <ul class="task-list">
-                    <li>Kéo dãn cơ hamstring, cơ bụng chân: Ngồi trên giường, vươn tay tới ngón chân đến khi vừa căng. Giữ 30 giây và lặp lại 3 lần cả 2 bên, nghỉ 30s mỗi lần.</li>
                     <li>
-                        <strong style="color: var(--text-main);">Tư thế Con mèo – Con bò (Cat - Cow):</strong> 
-                        <ul class="sub-list">
-                            <li>Chống hai tay và hai gối xuống sàn, lưng thẳng.</li>
-                            <li>Hít vào (bò): võng lưng xuống, ngẩng đầu nhìn lên.</li>
-                            <li>Thở ra (mèo): cong lưng lên cao, cúi đầu nhìn xuống rốn.</li>
-                            <li><strong style="color: var(--orange-primary);">Lặp lại chậm rãi 5 – 10 lần theo nhịp thở.</strong></li>
-                        </ul>
+                        <div class="task-layout">
+                            <div class="task-content">Kéo dãn cơ hamstring, cơ bụng chân: Ngồi trên giường, vươn tay tới ngón chân đến khi vừa căng. Giữ 30 giây và lặp lại 3 lần cả 2 bên, nghỉ 30s mỗi lần.</div>
+                            <div class="task-image"><img src="images/Kéo dãn cơ hamstring.jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">
+                                <strong style="color: var(--text-main);">Tư thế Con mèo – Con bò (Cat - Cow):</strong> 
+                                <ul class="sub-list">
+                                    <li>Chống hai tay và hai gối xuống sàn, lưng thẳng.</li>
+                                    <li>Hít vào (bò): võng lưng xuống, ngẩng đầu nhìn lên.</li>
+                                    <li>Thở ra (mèo): cong lưng lên cao, cúi đầu nhìn xuống rốn.</li>
+                                    <li><strong style="color: var(--orange-primary);">Lặp lại chậm rãi 5 – 10 lần theo nhịp thở.</strong></li>
+                                </ul>
+                            </div>
+                            <div class="task-image"><img src="images/Mèo bò.jpg" alt="Hình minh họa"></div>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -126,17 +169,39 @@
             <div class="time-block">
                 <div class="time-label">🌅 Buổi Sáng</div>
                 <ul class="task-list">
-                    <li>Tự kéo giãn cơ thang trên (gập cổ, nghiêng đối bên, xoay cùng bên, tay giữ cơ thang). Giữ 30 giây và lặp lại 3 lần mỗi bên, nghỉ 30s.</li>
-                    <li>Đứng lên và di chuyển. Tối thiểu 1 phút.</li>
-                    <li>Gập thân mình tới trước / ưỡn người về phía sau. (5 lần x 3 hiệp, mỗi hiệp nghỉ 30s).</li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Tự kéo giãn cơ thang trên (gập cổ, nghiêng đối bên, xoay cùng bên, tay giữ cơ thang). Giữ 30 giây và lặp lại 3 lần mỗi bên, nghỉ 30s.</div>
+                            <div class="task-image"><img src="images/kéo giãn cơ thang.jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Đứng lên và di chuyển. Tối thiểu 1 phút.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Gập thân mình tới trước / ưỡn người về phía sau. (5 lần x 3 hiệp, mỗi hiệp nghỉ 30s).</div>
+                            <div class="task-image"><img src="images/Gâp-duỗi thân mình.jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
                 </ul>
             </div>
 
             <div class="time-block">
                 <div class="time-label">☀️ Buổi Chiều</div>
                 <ul class="task-list">
-                    <li>Đứng lên và di chuyển. Tối thiểu 1 phút.</li>
-                    <li>Hít thở kết hợp xoay thân mình sang trái / phải. (5 lần x 3 hiệp, mỗi hiệp nghỉ 30s).</li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Đứng lên và di chuyển. Tối thiểu 1 phút.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Hít thở kết hợp xoay thân mình sang trái / phải. (5 lần x 3 hiệp, mỗi hiệp nghỉ 30s).</div>
+                        </div>
+                    </li>
                 </ul>
             </div>
 
@@ -144,15 +209,25 @@
                 <div class="time-label">🌙 Buổi Tối</div>
                 <ul class="task-list">
                     <li>
-                        <strong style="color: var(--text-main);">Kéo giãn cơ lưng rộng:</strong> 
-                        <ul class="sub-list">
-                            <li>Quỳ trên thảm, ngồi lên gót chân. Tách gối rộng sang hai bên.</li>
-                            <li>Gập người về trước, hạ trán chạm thảm. Thả lỏng vùng cổ và vai.</li>
-                            <li>Vươn tay thẳng về trước. (Nếu mỏi vai có thể xuôi tay ra sau).</li>
-                            <li><strong style="color: var(--orange-primary);">Hít thở đều và giữ tư thế từ 30 giây đến 2 phút.</strong></li>
-                        </ul>
+                        <div class="task-layout">
+                            <div class="task-content">
+                                <strong style="color: var(--text-main);">Kéo giãn cơ lưng rộng:</strong> 
+                                <ul class="sub-list">
+                                    <li>Quỳ trên thảm, ngồi lên gót chân. Tách gối rộng sang hai bên.</li>
+                                    <li>Gập người về trước, hạ trán chạm thảm. Thả lỏng vùng cổ và vai.</li>
+                                    <li>Vươn tay thẳng về trước. (Nếu mỏi vai có thể xuôi tay ra sau).</li>
+                                    <li><strong style="color: var(--orange-primary);">Hít thở đều và giữ tư thế từ 30 giây đến 2 phút.</strong></li>
+                                </ul>
+                            </div>
+                            <div class="task-image"><img src="images/Kéo dãn cơ lưng rộng.jpg" alt="Hình minh họa"></div>
+                        </div>
                     </li>
-                    <li>Kéo giãn cơ mông lớn (ép hai chân vào bụng khi đang nằm ngửa). Giữ 30 giây và lặp lại 3 lần mỗi bên, nghỉ 30s.</li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Kéo giãn cơ mông lớn (ép hai chân vào bụng khi đang nằm ngửa). Giữ 30 giây và lặp lại 3 lần mỗi bên, nghỉ 30s.</div>
+                            <div class="task-image"><img src="images/Kéo dãn cơ mông.jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>

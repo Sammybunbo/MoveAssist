@@ -42,12 +42,25 @@
         .time-block:last-child { margin-bottom: 0; }
         .time-label { display: inline-block; background-color: var(--blue-light); color: var(--blue-primary); font-weight: bold; padding: 6px 18px; border-radius: 20px; margin-bottom: 15px; font-size: 16px;}
         
+        /* CẬP NHẬT CSS LAYOUT HÌNH ẢNH */
         .task-list { list-style: none; }
-        .task-list li { position: relative; padding-left: 25px; margin-bottom: 12px; font-size: 17px; font-weight: 500;}
-        .task-list li::before { content: "🔹"; position: absolute; left: 0; color: var(--blue-primary); }
+        .task-list > li { position: relative; padding-left: 28px; margin-bottom: 30px; font-size: 17px; font-weight: 500; border-bottom: 1px solid var(--border-color); padding-bottom: 25px;}
+        .task-list > li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0;}
+        .task-list > li::before { content: "🔹"; position: absolute; left: 0; top: 2px; color: var(--blue-primary); font-size: 18px;}
+        
+        .task-layout { display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; width: 100%;}
+        .task-content { flex: 1; min-width: 250px; }
+        .task-image { width: 240px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); border: 1px solid var(--border-color); flex-shrink: 0; transition: 0.3s; background: transparent;}
+        .task-image img { width: 100%; height: auto; display: block; object-fit: contain; }     
+        .sub-list { list-style-type: disc; margin-top: 8px; margin-left: 20px; color: var(--text-muted); }
+        .sub-list li { margin-bottom: 8px; }
 
         .fade-in { opacity: 0; transform: translateY(30px); transition: 0.6s ease-out; }
         .fade-in.show { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 600px) {
+            .task-image { width: 100%; max-width: 100%; margin-top: 10px; }
+        }
     </style>
 </head>
 <body>
@@ -70,25 +83,53 @@
             <div class="time-block">
                 <div class="time-label">🌅 Buổi Sáng</div>
                 <ul class="task-list">
-                    <li>Hít thở: hít sâu vào bằng mũi thở ra chậm bằng miệng (thở ra gấp 2 - 3 lần hít vào).</li>
-                    <li>Đứng lên và di chuyển (đứng - ngồi tại chỗ, đi uống nước, ăn nhẹ, vệ sinh,...). Tối thiểu 1 phút.</li>
-                    <li>Hít thở kết hợp gập duỗi cổ nhẹ nhàng. (5 lần x 3 hiệp, mỗi hiệp nghỉ 30s).</li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Hít thở: hít sâu vào bằng mũi thở ra chậm bằng miệng (thở ra gấp 2 - 3 lần hít vào).</div>
+                            <div class="task-image"><img src="images/Hít thở ( sáng tuần 1).jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Hít thở kết hợp gập duỗi cổ nhẹ nhàng. (5 lần x 3 hiệp, mỗi hiệp nghỉ 30s).</div>
+                            <div class="task-image"><img src="images/Gâp-duỗi cổ kết hợp hít thở.gif" alt="Mô tả hành động của GIF" width="500"></div>
+                        </div>
+                    </li>
                 </ul>
             </div>
 
             <div class="time-block">
                 <div class="time-label">☀️ Buổi Chiều</div>
                 <ul class="task-list">
-                    <li>Đứng lên và di chuyển (đứng - ngồi tại chỗ, đi uống nước, ăn nhẹ, vệ sinh,...). Tối thiểu 1 phút.</li>
-                    <li>Gập thân mình tới trước / ưỡn người về phía sau. (5 lần x 3 hiệp, mỗi hiệp nghỉ 30s).</li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Đứng lên và di chuyển (đứng - ngồi tại chỗ, đi uống nước, ăn nhẹ, vệ sinh,...). Tối thiểu 1 phút.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Gập thân mình tới trước / ưỡn người về phía sau. (5 lần x 3 hiệp, mỗi hiệp nghỉ 30s).</div>
+                            <div class="task-image"><img src="images/Gâp-duỗi thân mình.jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
                 </ul>
             </div>
 
             <div class="time-block">
                 <div class="time-label">🌙 Buổi Tối</div>
                 <ul class="task-list">
-                    <li>Xoay cổ sang trái / phải giữ lại 30s lặp lại 5 lần mỗi bên.</li>
-                    <li>Nghiêng đầu sang trái / phải giữ lại 30s lặp lại 5 lần mỗi bên.</li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Xoay cổ sang trái / phải giữ lại 30s lặp lại 5 lần mỗi bên.</div>
+                            <div class="task-image"><img src="images/20260325_051001.jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Nghiêng đầu sang trái / phải giữ lại 30s lặp lại 5 lần mỗi bên.</div>
+                            <div class="task-image"><img src="images/20260325_050335.jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -99,25 +140,56 @@
             <div class="time-block">
                 <div class="time-label">🌅 Buổi Sáng</div>
                 <ul class="task-list">
-                    <li>Hít thở kết hợp xoay vai (hít sâu vào bằng mũi thở ra chậm bằng miệng, thở ra gấp 2 - 3 lần hít vào). (5 lần x 3 hiệp, mỗi hiệp nghỉ 30s).</li>
-                    <li>Đứng lên và di chuyển (đứng - ngồi tại chỗ, đi uống nước, ăn nhẹ, vệ sinh,...). Tối thiểu 1 phút.</li>
-                    <li>Hít thở kết hợp xoay thân mình sang trái / phải. (5 lần x 3 hiệp, mỗi hiệp nghỉ 30s).</li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Hít thở kết hợp xoay vai (hít sâu vào bằng mũi thở ra chậm bằng miệng, thở ra gấp 2 - 3 lần hít vào). (5 lần x 3 hiệp, mỗi hiệp nghỉ 30s).</div>
+                            <div class="task-image"><img src="images/hít thở và xoay vai.jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Đứng lên và di chuyển (đứng - ngồi tại chỗ, đi uống nước, ăn nhẹ, vệ sinh,...). Tối thiểu 1 phút.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Hít thở kết hợp xoay thân mình sang trái / phải. (5 lần x 3 hiệp, mỗi hiệp nghỉ 30s).</div>
+                        </div>
+                    </li>
                 </ul>
             </div>
 
             <div class="time-block">
                 <div class="time-label">☀️ Buổi Chiều</div>
                 <ul class="task-list">
-                    <li>Đứng lên và di chuyển (đứng - ngồi tại chỗ, đi uống nước, ăn nhẹ, vệ sinh,...). Tối thiểu 1 phút.</li>
-                    <li>Đứng lên xoay hông 5 lần mỗi chiều.</li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Đứng lên và di chuyển (đứng - ngồi tại chỗ, đi uống nước, ăn nhẹ, vệ sinh,...). Tối thiểu 1 phút.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Đứng lên xoay hông 5 lần mỗi chiều.</div>
+                        </div>
+                    </li>
                 </ul>
             </div>
 
             <div class="time-block">
                 <div class="time-label">🌙 Buổi Tối</div>
                 <ul class="task-list">
-                    <li>Xoay cổ sang trái / phải giữ lại 30s lặp lại 5 lần mỗi bên, mỗi lần nghỉ 30s.</li>
-                    <li>Nghiêng đầu sang trái / phải giữ lại 30s lặp lại 5 lần mỗi bên, mỗi lần nghỉ 30s.</li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Xoay cổ sang trái / phải giữ lại 30s lặp lại 5 lần mỗi bên, mỗi lần nghỉ 30s.</div>
+                            <div class="task-image"><img src="images/20260325_051001.jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="task-layout">
+                            <div class="task-content">Nghiêng đầu sang trái / phải giữ lại 30s lặp lại 5 lần mỗi bên, mỗi lần nghỉ 30s.</div>
+                            <div class="task-image"><img src="images/20260325_050335.jpg" alt="Hình minh họa"></div>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
