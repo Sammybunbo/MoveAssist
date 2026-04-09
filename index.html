@@ -44,8 +44,8 @@
             color: var(--text-main); 
             background-color: var(--bg-body); 
             overflow-x: hidden; 
-            line-height: 1.7; /* Đã tăng khoảng cách dòng cho dễ đọc */
-            font-size: 18px; /* Tăng size nền tảng */
+            line-height: 1.7; 
+            font-size: 18px; 
             transition: 0.3s; 
         }
 
@@ -53,7 +53,7 @@
             font-family: inherit; 
         }
 
-        /* THANH ĐIỀU HƯỚNG - PHÓNG TO CHỮ & NÚT */
+        /* THANH ĐIỀU HƯỚNG */
         nav { position: fixed; top: 0; width: 100%; background-color: var(--bg-nav); backdrop-filter: blur(10px); padding: 18px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; box-shadow: 0 1px 5px rgba(0,0,0,0.05); transition: 0.3s;}
         .nav-brand { font-weight: 800; font-size: 26px; color: var(--blue-primary); display: flex; align-items: center; gap: 8px;}
         .nav-links { display: flex; align-items: center; }
@@ -63,23 +63,30 @@
         .btn-nav-cta:hover { filter: brightness(1.1); transform: translateY(-2px); }
         .btn-icon-tool { background: transparent; border: none; font-size: 22px; cursor: pointer; color: var(--text-main); margin-left: 25px;}
 
-        /* HERO SECTION - TĂNG ĐỘ HOÀNH TRÁNG CỦA TIÊU ĐỀ */
+        /* HERO SECTION */
         #gioi-thieu { padding: 150px 5% 100px; min-height: 95vh; display: flex; align-items: center; background: radial-gradient(circle at top left, var(--bg-card), var(--bg-body)); overflow: hidden; }
         .container { max-width: 1200px; margin: 0 auto; width: 100%; position: relative; }
-        .row { display: flex; align-items: center; }
-        .col-text { flex: 1; padding-right: 50px; z-index: 2; } 
-        .col-image { flex: 1.2; height: 600px; position: relative; transform: translateX(50px); }
         
-        h1 { color: var(--text-main); font-size: 50px; margin-bottom: 25px; line-height: 1.2; font-weight: 900;} /* Tăng từ 48 lên 56 */
-        .intro-text { font-size: 20px; color: var(--text-muted); margin-bottom: 30px; text-align: justify; max-width: 580px;} /* Tăng từ 18 lên 20 */
+        .row { display: flex; align-items: center; justify-content: space-between; }
         
-        .hero-image-container { width: 100%; height: 100%; -webkit-mask-image: linear-gradient(to left, black 40%, transparent 100%); mask-image: linear-gradient(to left, black 40%, transparent 100%); }
-        .hero-image { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; border-radius: 20px;}
+        .col-text { flex: 0 0 45%; padding-right: 20px; z-index: 2; } 
+        .col-image { flex: 0 0 50%; display: flex; align-items: center; justify-content: center; position: relative; }
+        
+        h1 { color: var(--text-main); font-size: 50px; margin-bottom: 25px; line-height: 1.2; font-weight: 900;}
+        .intro-text { font-size: 20px; color: var(--text-muted); margin-bottom: 30px; text-align: justify; max-width: 580px;}
+        
+        /* ẢNH TO HIỂN THỊ RÕ 100% - KHÔNG FADE */
+        .hero-image-container { 
+            width: 100%; 
+            display: flex; 
+            justify-content: center; 
+        }
+        .hero-image { width: 100%; height: auto; max-height: 650px; object-fit: contain; border-radius: 20px; }
         
         .btn-primary { display: inline-block; background-color: var(--blue-primary); color: white; padding: 20px 45px; border-radius: 50px; font-size: 20px; font-weight: bold; text-decoration: none; box-shadow: 0 10px 25px rgba(14, 165, 233, 0.4); transition: 0.3s; border: none; cursor: pointer;}
         .btn-primary:hover { filter: brightness(1.1); transform: translateY(-3px); box-shadow: 0 15px 30px rgba(14, 165, 233, 0.5); }
 
-        /* LỊCH TRÌNH - CHỈNH LẠI CÁC THẺ BÀI TẬP TO HƠN */
+        /* LỊCH TRÌNH - CHỈNH LẠI CÁC THẺ BÀI TẬP VÀ ẢNH CHO BẰNG NHAU */
         section { padding: 100px 5%; }
         .section-header { text-align: center; max-width: 750px; margin: 0 auto 60px; }
         .section-title { color: var(--text-main); font-size: 42px; margin-bottom: 15px; font-weight: 800; }
@@ -87,15 +94,16 @@
         #lich-trinh { background-color: var(--bg-card); }
         .schedule-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; max-width: 1050px; margin: 0 auto; }
         
-        .week-card { background: var(--bg-card); border-radius: 25px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid var(--border-color); display: flex; flex-direction: column; }
+        .week-card { background: var(--bg-card); border-radius: 25px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid var(--border-color); display: flex; flex-direction: column; height: 100%; }
         .week-card:hover { transform: translateY(-10px); border-color: var(--blue-primary);}
-        .week-img { width: 100%; height: 250px; object-fit: cover; }
+        .week-img { width: 100%; height: 260px; object-fit: cover; object-position: center; }
         .week-content { padding: 35px; flex-grow: 1; display: flex; flex-direction: column; }
         
         .week-tag { align-self: flex-start; background-color: var(--blue-light-accent); color: var(--blue-primary); padding: 8px 18px; border-radius: 20px; font-size: 14px; font-weight: bold; margin-bottom: 15px; }
         .week-title { font-size: 26px; color: var(--text-main); margin-bottom: 15px; font-weight: 700; }
         .week-details { font-size: 17px; color: var(--text-muted); margin-bottom: 30px; flex-grow: 1; }
-        .btn-detail { text-align: center; background-color: transparent; color: var(--blue-primary); padding: 15px; border-radius: 15px; text-decoration: none; font-weight: bold; border: 2px solid var(--border-color); transition: 0.3s; font-size: 16px;}
+        
+        .btn-detail { margin-top: auto; text-align: center; background-color: transparent; color: var(--blue-primary); padding: 15px; border-radius: 15px; text-decoration: none; font-weight: bold; border: 2px solid var(--border-color); transition: 0.3s; font-size: 16px;}
         .btn-detail:hover { background-color: var(--blue-primary); color: white; border-color: var(--blue-primary); }
 
         /* KIẾN THỨC & ĐÁNH GIÁ */
@@ -104,7 +112,7 @@
         .placeholder-box { background: var(--bg-card); padding: 60px 40px; border-radius: 25px; box-shadow: 0 15px 30px rgba(0,0,0,0.05); max-width: 750px; margin: 0 auto; border: 3px dashed var(--border-color); }
         .placeholder-title { font-size: 28px; margin-bottom: 15px; font-weight: 700;}
 
-        /* CTA CUỐI TRANG - NÚT SIÊU TO */
+        /* CTA CUỐI TRANG */
         .cta-container { text-align: center; padding: 120px 5%; background: linear-gradient(135deg, var(--blue-dark), var(--blue-primary)); color: white; }
         .cta-container h2 { font-size: 42px; margin-bottom: 20px; font-weight: 800; color: white;}
         .cta-container p { font-size: 22px; color: #e0f2fe; margin-bottom: 50px; }
@@ -214,13 +222,17 @@
             font-style: italic;
         }
 
+        /* RESPONSIVE TRÊN ĐIỆN THOẠI */
         @media (max-width: 900px) {
             .row { flex-direction: column; text-align: center; }
-            .col-text { padding-right: 0; margin-bottom: 50px; }
+            .col-text { flex: 0 0 100%; padding-right: 0; margin-bottom: 50px; }
             .intro-text { margin: 0 auto 30px; font-size: 18px;}
-            .col-image { transform: none; height: 400px; width: 100%; }
-            .hero-image-container { -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%); mask-image: linear-gradient(to bottom, black 50%, transparent 100%); }
-            h1 { font-size: 42px; }
+            .col-image { flex: 0 0 100%; transform: none; height: auto; width: 100%; }
+            
+            .hero-image-container { 
+                justify-content: center;
+            }
+            
             .nav-links { display: none; }
             .schedule-grid { grid-template-columns: 1fr; }
             .credits-content {
@@ -266,7 +278,7 @@
                 </div>
                 <div class="col-image fade-in">
                     <div class="hero-image-container">
-                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1471&q=80" alt="Nhân viên làm việc" class="hero-image">
+                        <img src="images/Main image.jpg" alt="Nhân viên làm việc" class="hero-image">
                     </div>
                 </div>
             </div>
@@ -280,7 +292,7 @@
         </div>
         <div class="schedule-grid">
             <div class="week-card fade-in">
-                <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tuần 1" class="week-img">
+                <img src="images/tuan-1_processed.png" alt="Tuần 1" class="week-img">
                 <div class="week-content">
                     <span class="week-tag">Tuần 1</span>
                     <h3 class="week-title">Khởi động</h3>
@@ -289,7 +301,7 @@
                 </div>
             </div>
             <div class="week-card fade-in">
-                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tuần 2" class="week-img">
+                <img src="images/tuan-2.jpg" alt="Tuần 2" class="week-img">
                 <div class="week-content">
                     <span class="week-tag">Tuần 2</span>
                     <h3 class="week-title">Giảm đau & Kéo giãn</h3>
@@ -298,7 +310,7 @@
                 </div>
             </div>
             <div class="week-card fade-in">
-                <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tuần 3" class="week-img">
+                <img src="images/tuan-3.png" alt="Tuần 3" class="week-img">
                 <div class="week-content">
                     <span class="week-tag">Tuần 3</span>
                     <h3 class="week-title">Tăng cường sức mạnh</h3>
@@ -307,7 +319,7 @@
                 </div>
             </div>
             <div class="week-card fade-in">
-                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tuần 4" class="week-img">
+                <img src="images/tuan-4.png" alt="Tuần 4" class="week-img">
                 <div class="week-content">
                     <span class="week-tag">Tuần 4</span>
                     <h3 class="week-title">Duy trì & Ổn định</h3>
