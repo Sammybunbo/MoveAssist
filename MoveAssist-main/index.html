@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trợ Lý Vận Động - Xóa Bỏ Cơn Đau Chốn Công Sở</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* HỆ THỐNG BIẾN MÀU SÁNG/TỐI TỰ ĐỘNG */
+        :root {
+            --bg-body: #f0f9ff;
+            --bg-card: #ffffff;
+            --bg-nav: rgba(255, 255, 255, 0.9);
+            --blue-primary: #0ea5e9;
+            --blue-dark: #0369a1;
+            --blue-light-accent: #e0f2fe;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --border-color: #f1f5f9;
+            --orange-primary: #f59e0b;
+        }
+
+        body.dark-mode {
+            --bg-body: #0f172a;
+            --bg-card: #1e293b;
+            --bg-nav: rgba(30, 41, 59, 0.9);
+            --blue-primary: #38bdf8;
+            --blue-dark: #bae6fd;
+            --blue-light-accent: #0f172a;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        /* CẬP NHẬT FONT MONTSERRAT - NỚI LỎNG DÒNG */
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            color: var(--text-main); 
+            background-color: var(--bg-body); 
+            overflow-x: hidden; 
+            line-height: 1.7; 
+            font-size: 18px; 
+            transition: 0.3s; 
+        }
+
+        button, input, select, textarea {
+            font-family: inherit; 
+        }
+
+        /* THANH ĐIỀU HƯỚNG */
+        nav { position: fixed; top: 0; width: 100%; background-color: var(--bg-nav); backdrop-filter: blur(10px); padding: 18px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; box-shadow: 0 1px 5px rgba(0,0,0,0.05); transition: 0.3s;}
+        .nav-brand { font-weight: 800; font-size: 26px; color: var(--blue-primary); display: flex; align-items: center; gap: 8px;}
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { color: var(--text-main); text-decoration: none; margin-left: 30px; font-weight: 600; transition: 0.3s; font-size: 17px;}
+        .nav-links a:hover { color: var(--blue-primary); }
+        .btn-nav-cta { background-color: var(--blue-primary); color: white !important; padding: 12px 28px; border-radius: 50px; box-shadow: 0 4px 10px rgba(14, 165, 233, 0.3); font-size: 16px;}
+        .btn-nav-cta:hover { filter: brightness(1.1); transform: translateY(-2px); }
+        .btn-icon-tool { background: transparent; border: none; font-size: 22px; cursor: pointer; color: var(--text-main); margin-left: 25px;}
+
+        /* HERO SECTION */
+        #gioi-thieu { padding: 150px 5% 100px; min-height: 95vh; display: flex; align-items: center; background: radial-gradient(circle at top left, var(--bg-card), var(--bg-body)); overflow: hidden; }
+        .container { max-width: 1200px; margin: 0 auto; width: 100%; position: relative; }
+        
+        .row { display: flex; align-items: center; justify-content: space-between; }
+        
+        .col-text { flex: 0 0 45%; padding-right: 20px; z-index: 2; } 
+        .col-image { flex: 0 0 50%; display: flex; align-items: center; justify-content: center; position: relative; }
+        
+        h1 { color: var(--text-main); font-size: 50px; margin-bottom: 25px; line-height: 1.2; font-weight: 900;}
+        .intro-text { font-size: 20px; color: var(--text-muted); margin-bottom: 30px; text-align: justify; max-width: 580px;}
+        
+        /* ẢNH TO HIỂN THỊ RÕ 100% - KHÔNG FADE */
+        .hero-image-container { 
+            width: 100%; 
+            display: flex; 
+            justify-content: center; 
+        }
+        .hero-image { width: 100%; height: auto; max-height: 650px; object-fit: contain; border-radius: 20px; }
+        
+        .btn-primary { display: inline-block; background-color: var(--blue-primary); color: white; padding: 20px 45px; border-radius: 50px; font-size: 20px; font-weight: bold; text-decoration: none; box-shadow: 0 10px 25px rgba(14, 165, 233, 0.4); transition: 0.3s; border: none; cursor: pointer;}
+        .btn-primary:hover { filter: brightness(1.1); transform: translateY(-3px); box-shadow: 0 15px 30px rgba(14, 165, 233, 0.5); }
+
+        /* LỊCH TRÌNH - CHỈNH LẠI CÁC THẺ BÀI TẬP VÀ ẢNH CHO BẰNG NHAU */
+        section { padding: 100px 5%; }
+        .section-header { text-align: center; max-width: 750px; margin: 0 auto 60px; }
+        .section-title { color: var(--text-main); font-size: 42px; margin-bottom: 15px; font-weight: 800; }
+        .section-desc { font-size: 20px; color: var(--text-muted); }
+        #lich-trinh { background-color: var(--bg-card); }
+        .schedule-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; max-width: 1050px; margin: 0 auto; }
+        
+        .week-card { background: var(--bg-card); border-radius: 25px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid var(--border-color); display: flex; flex-direction: column; height: 100%; }
+        .week-card:hover { transform: translateY(-10px); border-color: var(--blue-primary);}
+        .week-img { width: 100%; height: 260px; object-fit: cover; object-position: center; }
+        .week-content { padding: 35px; flex-grow: 1; display: flex; flex-direction: column; }
+        
+        .week-tag { align-self: flex-start; background-color: var(--blue-light-accent); color: var(--blue-primary); padding: 8px 18px; border-radius: 20px; font-size: 14px; font-weight: bold; margin-bottom: 15px; }
+        .week-title { font-size: 26px; color: var(--text-main); margin-bottom: 15px; font-weight: 700; }
+        .week-details { font-size: 17px; color: var(--text-muted); margin-bottom: 30px; flex-grow: 1; }
+        
+        .btn-detail { margin-top: auto; text-align: center; background-color: transparent; color: var(--blue-primary); padding: 15px; border-radius: 15px; text-decoration: none; font-weight: bold; border: 2px solid var(--border-color); transition: 0.3s; font-size: 16px;}
+        .btn-detail:hover { background-color: var(--blue-primary); color: white; border-color: var(--blue-primary); }
+
+        /* KIẾN THỨC & ĐÁNH GIÁ */
+        #kien-thuc { background-color: var(--bg-body); text-align: center; }
+        #khao-sat { background-color: var(--bg-card); text-align: center; }
+        .placeholder-box { background: var(--bg-card); padding: 60px 40px; border-radius: 25px; box-shadow: 0 15px 30px rgba(0,0,0,0.05); max-width: 750px; margin: 0 auto; border: 3px dashed var(--border-color); }
+        .placeholder-title { font-size: 28px; margin-bottom: 15px; font-weight: 700;}
+
+        /* CTA CUỐI TRANG */
+        .cta-container { text-align: center; padding: 120px 5%; background: linear-gradient(135deg, var(--blue-dark), var(--blue-primary)); color: white; }
+        .cta-container h2 { font-size: 42px; margin-bottom: 20px; font-weight: 800; color: white;}
+        .cta-container p { font-size: 22px; color: #e0f2fe; margin-bottom: 50px; }
+        .btn-start-huge { display: inline-block; background-color: white; color: var(--blue-primary); padding: 22px 55px; border-radius: 50px; font-size: 24px; font-weight: 800; text-decoration: none; text-transform: uppercase; box-shadow: 0 20px 40px rgba(0,0,0,0.2); transition: 0.3s; }
+        .btn-start-huge:hover { transform: translateY(-5px); box-shadow: 0 25px 50px rgba(0,0,0,0.3); color: var(--blue-dark); }
+
+        /* CSS CHO PHẦN CREDIT */
+        .credits-section {
+            padding: 80px 5%;
+            background-color: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+            transition: 0.3s;
+        }
+
+        .credits-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .credits-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .uni-tag {
+            display: inline-block;
+            background-color: var(--blue-light-accent);
+            color: var(--blue-primary);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .credits-header h2 {
+            font-size: 28px;
+            color: var(--blue-dark);
+            font-weight: 800;
+        }
+
+        .divider {
+            width: 60px;
+            height: 4px;
+            background: var(--blue-primary);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .credits-content {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .credit-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .major {
+            color: var(--blue-primary);
+            font-weight: 600;
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+
+        .team-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .member-tag {
+            background: var(--bg-body);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            transition: 0.3s;
+        }
+
+        .member-tag:hover {
+            border-color: var(--blue-primary);
+            color: var(--blue-primary);
+            transform: translateY(-2px);
+        }
+
+        .instructor {
+            font-size: 16px;
+            color: var(--text-muted);
+        }
+
+        .project-purpose {
+            font-size: 16px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            padding-left: 30px;
+            border-left: 2px solid var(--border-color);
+            font-style: italic;
+        }
+
+        /* RESPONSIVE TRÊN ĐIỆN THOẠI */
+        @media (max-width: 900px) {
+            .row { flex-direction: column; text-align: center; }
+            .col-text { flex: 0 0 100%; padding-right: 0; margin-bottom: 50px; }
+            .intro-text { margin: 0 auto 30px; font-size: 18px;}
+            .col-image { flex: 0 0 100%; transform: none; height: auto; width: 100%; }
+            
+            .hero-image-container { 
+                justify-content: center;
+            }
+            
+            .nav-links { display: none; }
+            .schedule-grid { grid-template-columns: 1fr; }
+            .credits-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .project-purpose {
+                padding-left: 0;
+                border-left: none;
+                border-top: 1px solid var(--border-color);
+                padding-top: 30px;
+            }
+            .team-list {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-brand">Move Assist </div>
+        <div class="nav-links">
+            <a href="#gioi-thieu">Giới thiệu</a>
+            <a href="#lich-trinh">Lộ trình</a>
+            <a href="#kien-thuc">Kiến thức</a>
+            <a href="#khao-sat">Đánh giá</a>
+            <a href="timer.html" class="btn-nav-cta">Bắt đầu ngay</a>
+            <button class="btn-icon-tool" id="darkModeToggle" onclick="toggleDarkMode()" title="Chế độ Sáng/Tối">🌙</button>
+        </div>
+    </nav>
+
+    <section id="gioi-thieu">
+        <div class="container">
+            <div class="row">
+                <div class="col-text fade-in">
+                    <h1>Đánh Thức Cơ Thể</h1>
+                    <h1>Làm Việc Hiệu Quả</h1>
+                    <h1>Tạm Biệt Cơn Đau</h1>
+                    <p class="intro-text">Chúng ta dành 8 tiếng mỗi ngày "đóng băng" trên ghế, khiến cơ thể kêu cứu bằng những cơn đau mỏi vai gáy dai dẳng. Bạn biết mình cần vận động, nhưng công việc cuốn đi khiến bạn quên mất.</p>
+                    <p class="intro-text">Website này không chỉ là một chiếc đồng hồ nhắc nhở vô tri. Đây là một <strong>Trợ lý Vận động </strong>, cung cấp cho bạn một kế hoạch tập luyện khoa học 4 tuần để chủ động phá vỡ thói quen ngồi lì, tái tạo năng lượng ngay tại bàn làm việc mà không làm gián đoạn dòng chảy công việc của bạn.</p>
+                    <a href="timer.html" class="btn-primary">Bắt đầu ngay ➔</a>
+                </div>
+                <div class="col-image fade-in">
+                    <div class="hero-image-container">
+                        <img src="images/Main image.jpg" alt="Nhân viên làm việc" class="hero-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lich-trinh">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Danh sách bài tập 4 tuần</h2>
+            <p class="section-desc">Chương trình tập luyện tăng tiến khoa học, được thiết kế chuyên biệt cho môi trường văn phòng.</p>
+        </div>
+        <div class="schedule-grid">
+            <div class="week-card fade-in">
+                <img src="images/tuan-1.png" alt="Tuần 1" class="week-img">
+                <div class="week-content">
+                    <span class="week-tag">Tuần 1</span>
+                    <h3 class="week-title">Khởi động</h3>
+                    <p class="week-details">Các bài tập hít thở và vận động nhẹ nhàng để "đánh thức" cơ thể đang ngủ quên.</p>
+                    <a href="tuan-1.html" class="btn-detail">Chi tiết bài tập</a>
+                </div>
+            </div>
+            <div class="week-card fade-in">
+                <img src="images/tuan-2.jpg" alt="Tuần 2" class="week-img">
+                <div class="week-content">
+                    <span class="week-tag">Tuần 2</span>
+                    <h3 class="week-title">Giảm đau & Kéo giãn</h3>
+                    <p class="week-details">Tập trung kéo giãn các nhóm cơ cổ, vai, lưng đang bị co cứng do ngồi lâu.</p>
+                    <a href="tuan-2.html" class="btn-detail">Chi tiết bài tập</a>
+                </div>
+            </div>
+            <div class="week-card fade-in">
+                <img src="images/tuan-3.png" alt="Tuần 3" class="week-img">
+                <div class="week-content">
+                    <span class="week-tag">Tuần 3</span>
+                    <h3 class="week-title">Tăng cường sức mạnh</h3>
+                    <p class="week-details">Kích hoạt các nhóm cơ lõi (core) để hỗ trợ cột sống vững chắc hơn.</p>
+                    <a href="tuan-3.html" class="btn-detail">Chi tiết bài tập</a>
+                </div>
+            </div>
+            <div class="week-card fade-in">
+                <img src="images/tuan-4.png" alt="Tuần 4" class="week-img">
+                <div class="week-content">
+                    <span class="week-tag">Tuần 4</span>
+                    <h3 class="week-title">Duy trì & Ổn định</h3>
+                    <p class="week-details">Biến việc vận động thành thói quen tự nhiên để bảo vệ thành quả lâu dài.</p>
+                    <a href="tuan-4.html" class="btn-detail">Chi tiết bài tập</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kien-thuc">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Góc Kiến Thức</h2>
+            <p class="section-desc">Hiểu đúng về cơ thể để bảo vệ bản thân tốt hơn.</p>
+        </div>
+        <div class="placeholder-box fade-in" style="border-color: var(--blue-primary);">
+            <h3 class="placeholder-title" style="color: var(--blue-primary);">📚 Cẩm nang sức khỏe văn phòng</h3>
+            <p style="color: var(--text-muted); margin-bottom: 25px; font-size: 18px;">Quy tắc 3 góc 90 độ, Hội chứng mông chết,...</p>
+            <a href="kien-thuc.html" class="btn-primary" style="padding: 15px 35px; font-size: 18px;">Đọc ngay!</a>
+        </div>
+    </section>
+
+    <section id="khao-sat">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Đánh Giá</h2>
+            <p class="section-desc">Kiểm tra định kỳ để thấy rõ hiệu quả của việc tập luyện.</p>
+        </div>
+        <div class="placeholder-box fade-in" style="border-color: var(--orange-primary);">
+            <h3 class="placeholder-title" style="color: var(--orange-primary);">📝 Hệ thống sàng lọc lâm sàng</h3>
+            <p style="color: var(--text-muted); margin-bottom: 25px; font-size: 18px;">Sử dụng các thang đo y khoa để đảm bảo an toàn và cá nhân hóa.</p>
+            <a href="danh-gia.html" class="btn-primary" style="background-color: var(--orange-primary); padding: 15px 35px; font-size: 18px;">Thực hiện sàng lọc</a>
+        </div>
+    </section>
+
+    <div class="cta-container fade-in">
+        <h2>Đã đến lúc phá vỡ sự thụ động!</h2>
+        <p>Hãy để Move Assist đồng hành cùng bạn trong phiên làm việc tiếp theo.</p>
+        <a href="timer.html" class="btn-start-huge">BẮT ĐẦU NGAY HÔM NAY!</a>
+    </div>
+
+    <section id="credits" class="credits-section fade-in">
+        <div class="credits-container">
+            <div class="credits-header">
+                <span class="uni-tag">Đại học Y Dược TP.HCM</span>
+                <span class="uni-tag">Bộ môn Phục hồi chức năng</span>
+                <h2>DỰ ÁN PHỤC HỒI CHỨC NĂNG DỰA VÀO CỘNG ĐỒNG</h2>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="credits-content">
+                <div class="credit-info">
+                    <h3>Sản phẩm được thực hiện bởi</h3>
+                    <p class="major">Sinh viên ngành Phục hồi chức năng - Khóa 2022</p>
+                    
+                    <div class="team-list">
+                        <div class="member-tag">👨‍⚕️ Bùi Phạm Việt Phúc</div>
+                        <div class="member-tag">👨‍⚕️ Trần Hoàng Thiên Chương</div>
+                        <div class="member-tag">👨‍⚕️ Nguyễn Đức Duy</div>
+                        <div class="member-tag">👨‍⚕️ Trần Nguyễn Trọng Khang</div>
+                        <div class="member-tag">👨‍⚕️ Cao Huỳnh Bảo Nguyên</div>
+                        <div class="member-tag">👨‍⚕️ Nguyễn Tấn Đạt</div>
+                        <div class="member-tag">👩‍⚕️ Trần Thị Ngọc Trang</div>
+                        <div class="member-tag">👩‍⚕️ Phạm Thị Thu Hòa</div>
+                    </div>
+                    
+                    <p class="contact"><strong>Giảng viên hướng dẫn:</strong> ThS. Huỳnh Chung</p>
+                    <p class="contact"><strong>Thông tin liên hệ:</strong> moveassist.rehab@gmail.com</p>
+                </div>
+                
+                <div class="project-purpose">
+                    <p>MoveAssist là sản phẩm cho môn học Thực tế phục hồi chức năng dựa vào cộng đồng và là công cụ hỗ trợ sức khỏe, tập trung vào việc phòng ngừa các rối loạn cơ xương khớp cho đối tượng nhân viên văn phòng thông qua các phác đồ vận động khoa học.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // LOGIC DARK MODE (Đồng bộ)
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('pt_dark_mode', isDark ? 'enabled' : 'disabled');
+            document.getElementById('darkModeToggle').innerText = isDark ? '☀️' : '🌙';
+        }
+        if (localStorage.getItem('pt_dark_mode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('darkModeToggle').innerText = '☀️';
+        }
+
+        // Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => { 
+                if (entry.isIntersecting) { 
+                    entry.target.style.opacity = 1; 
+                    entry.target.style.transform = 'translateY(0)'; 
+                } 
+            });
+        });
+        document.querySelectorAll('.fade-in').forEach((el) => {
+            el.style.opacity = 0; el.style.transform = 'translateY(40px)'; el.style.transition = '0.8s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Góc Kiến Thức - Trợ Lý Vận Động</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* HỆ THỐNG BIẾN MÀU SÁNG/TỐI */
+        :root { 
+            --bg-body: #f8fafc; 
+            --bg-card: #ffffff; 
+            --blue-light: #f0f9ff; 
+            --blue-primary: #0ea5e9; 
+            --blue-dark: #0369a1; 
+            --text-main: #334155; 
+            --text-muted: #64748b; 
+            --border-color: #e2e8f0;
+            --orange-primary: #f59e0b;
+            --note-bg: #fffbeb;
+            --note-text: #92400e;
+        }
+
+        body.dark-mode {
+            --bg-body: #0f172a; 
+            --bg-card: #1e293b; 
+            --blue-light: #1e293b; 
+            --blue-primary: #38bdf8; 
+            --blue-dark: #bae6fd; 
+            --text-main: #f8fafc; 
+            --text-muted: #94a3b8; 
+            --border-color: #334155;
+            --orange-primary: #fbbf24;
+            --note-bg: #451a03;
+            --note-text: #fde68a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        /* CẬP NHẬT FONT VÀ MÀU NỀN TẢNG */
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            color: var(--text-main); 
+            background-color: var(--bg-body); 
+            line-height: 1.8; 
+            font-size: 17px; 
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button, input, select, textarea {
+            font-family: inherit; 
+        }
+
+        /* Header */
+        header { background: var(--bg-card); padding: 15px 5%; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border-color); transition: 0.3s;}
+        .btn-back { text-decoration: none; color: var(--blue-primary); font-weight: bold; font-size: 17px; display: inline-flex; align-items: center; gap: 8px; flex: 1;}
+        .btn-back:hover { color: var(--blue-dark); }
+        .page-title { flex: 2; text-align: center; color: var(--blue-dark); font-weight: 800; font-size: 21px; }
+        .header-tools { flex: 1; display: flex; justify-content: flex-end; }
+        .btn-icon-tool { background: transparent; border: none; font-size: 22px; cursor: pointer; color: var(--text-main); transition: 0.3s;}
+
+        /* Layout 2 cột */
+        .content-wrapper { max-width: 1200px; margin: 40px auto; padding: 0 5%; display: flex; gap: 40px; align-items: flex-start; }
+        
+        /* Menu Sidebar (Cố định khi cuộn) */
+        .sidebar { flex: 1; position: sticky; top: 100px; background: var(--bg-card); padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid var(--border-color); max-height: calc(100vh - 120px); overflow-y: auto; transition: 0.3s;}
+        .sidebar h3 { margin-bottom: 20px; color: var(--blue-dark); font-size: 17px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px;}
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 15px; }
+        .sidebar a { text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 15px; transition: 0.2s; display: block; padding-left: 8px; border-left: 3px solid transparent;}
+        .sidebar a:hover, .sidebar a.active { color: var(--blue-primary); border-left-color: var(--blue-primary); }
+
+        /* Nội dung chính */
+        .main-articles { flex: 3; background: var(--bg-card); padding: 40px 50px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid var(--border-color); transition: 0.3s;}
+        .article-section { margin-bottom: 60px; padding-bottom: 40px; border-bottom: 1px solid var(--border-color); scroll-margin-top: 100px;}
+        .article-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0;}
+        
+        /* Chỉnh sửa hiển thị Tag và Nút bài báo */
+        .article-meta { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; flex-wrap: wrap; }
+        .article-tag { display: inline-block; background: var(--blue-light); color: var(--blue-primary); padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; text-transform: uppercase;}
+        
+        .source-link { 
+            display: inline-flex; align-items: center; gap: 5px; font-size: 14px; font-weight: bold; 
+            color: var(--text-muted); text-decoration: none; padding: 5px 12px; 
+            border-radius: 20px; border: 1px solid var(--border-color); transition: 0.3s; background-color: var(--bg-body);
+        }
+        .source-link:hover { color: var(--blue-primary); border-color: var(--blue-primary); background-color: var(--blue-light); }
+
+        .article-section h2 { color: var(--blue-dark); font-size: 25px; margin-bottom: 20px; font-weight: 800; line-height: 1.3;}
+        .article-section p { font-size: 17px; margin-bottom: 15px; text-align: justify; }
+        .article-section ul { margin-left: 20px; margin-bottom: 15px; font-size: 16px; }
+        .article-section li { margin-bottom: 8px; }
+        
+        .med-note { background-color: var(--note-bg); border-left: 4px solid var(--orange-primary); padding: 15px; border-radius: 0 8px 8px 0; margin: 20px 0; font-size: 16px; color: var(--note-text); font-weight: 500; transition: 0.3s;}
+
+        /* Khối Call to action */
+        .cta-bottom { background: var(--blue-light); padding: 40px; text-align: center; border-radius: 15px; margin-top: 50px; border: 2px dashed var(--blue-primary); transition: 0.3s;}
+        .btn-primary { display: inline-block; background-color: var(--blue-primary); color: white; padding: 14px 35px; border-radius: 50px; font-size: 17px; font-weight: bold; text-decoration: none; margin-top: 15px; transition: 0.3s; box-shadow: 0 5px 15px rgba(14, 165, 233, 0.3);}
+        .btn-primary:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+        @media (max-width: 900px) {
+            .content-wrapper { flex-direction: column; }
+            header { flex-direction: column; gap: 15px;}
+            .btn-back, .header-tools { width: 100%; justify-content: center; }
+            .sidebar { position: static; width: 100%; max-height: 300px; margin-bottom: 20px;}
+            .main-articles { padding: 30px 20px; }
+            .page-title { font-size: 18px; transform: none; text-align: center; width: 100%;}
+        }
+    </style>
+     
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="btn-back"><span>&#8592;</span> Trang chủ</a>
+        <div class="page-title">Cẩm Nang Bảo Vệ Sức Khỏe Dân Văn Phòng</div>
+        <div class="header-tools">
+            <button class="btn-icon-tool" id="darkModeToggle" onclick="toggleDarkMode()" title="Chế độ Sáng/Tối">🌙</button>
+        </div>
+    </header>
+
+    <div class="content-wrapper">
+        <aside class="sidebar">
+            <h3>Danh mục bài viết</h3>
+            <ul>
+                <li><a href="#tu-the">1. Quy tắc "3 góc 90 độ"</a></li>
+                <li><a href="#dia-dem">2. Đĩa đệm cũng biết khát</a></li>
+                <li><a href="#co-mong">3. Hội chứng "Mông chết"</a></li>
+                <li><a href="#mat">4. Quy tắc 20-20-20</a></li>
+                <li><a href="#co-rua">5. Hội chứng "Cổ rùa"</a></li>
+                <li><a href="#vat-cheo-chan">6. Tác hại vắt chéo chân</a></li>
+                <li><a href="#ong-co-tay">7. Hội chứng Ống cổ tay</a></li>
+                <li><a href="#chuyen-hoa">8. Kích hoạt trao đổi chất</a></li>
+                <li><a href="#gian-co">9. Tại sao phải giữ cơ 30s?</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-articles">
+            
+            <section id="tu-the" class="article-section">
+                <div class="article-meta">
+                    <span class="article-tag">Sinh cơ học tư thế</span>
+                    <a href="https://www.osha.gov/etools/computer-workstations/positions" target="_blank" class="source-link">Đi tới bài báo ↗</a>
+                </div>
+                <h2>1. Setup góc làm việc: Quy tắc "3 góc 90 độ"</h2>
+                <p>Đau mỏi vai gáy không tự nhiên sinh ra, nó là hệ quả của việc cơ bắp phải gồng gánh một tư thế sai lệch hàng giờ liền. Hãy rà soát lại tư thế của bạn ngay bây giờ với chuẩn công thái học (Ergonomics):</p>
+                <ul>
+                    <li><strong>Khuỷu tay (90 độ):</strong> Bàn phím và chuột phải đặt ngang tầm khuỷu tay. Nếu bàn quá cao, vai bạn sẽ tự động nhô lên (shrugging) gây co thắt cơ thang.</li>
+                    <li><strong>Khớp háng & Đầu gối (90 độ):</strong> Điều chỉnh ghế sao cho hông và gối tạo thành góc vuông, hai bàn chân chạm phẳng trên sàn.</li>
+                    <li><strong>Tầm mắt:</strong> Cạnh trên cùng của màn hình máy tính phải nằm ngang tầm mắt để giữ cột sống cổ ở vị trí trung tính.</li>
+                </ul>
+            </section>
+
+            <section id="dia-dem" class="article-section">
+                <div class="article-meta">
+                    <span class="article-tag">Sinh lý cột sống</span>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC165040/" target="_blank" class="source-link">Đi tới bài báo ↗</a>
+                </div>
+                <h2>2. Đĩa đệm của bạn cũng biết "khát nước"</h2>
+                <p>Đĩa đệm nằm giữa các đốt sống có cấu tạo chủ yếu là nước, hoạt động như một bộ phận giảm xóc. Tuy nhiên, nó không có mạch máu nuôi dưỡng trực tiếp mà thẩm thấu dưỡng chất thông qua sự thay đổi áp lực (Diurnal variations).</p>
+                <p>Khi bạn ngồi lỳ một tư thế, trọng lượng cơ thể ép liên tục làm "vắt kiệt" nước ra khỏi đĩa đệm. Khe hẹp đốt sống giảm xuống có thể gây chèn ép thần kinh.</p>
+                <div class="med-note"><strong>Lời khuyên y khoa:</strong> Việc đứng dậy đi lại mỗi 60-90 phút sẽ giải phóng áp lực, tạo ra lực "hút chân không" giúp đĩa đệm tái hấp thu nước và phục hồi độ đàn hồi.</div>
+            </section>
+
+            <section id="co-mong" class="article-section">
+                <div class="article-meta">
+                    <span class="article-tag">Hệ Cơ </span>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/10638873/" target="_blank" class="source-link">Đi tới bài báo ↗</a>
+                </div>
+                <h2>3. Hội chứng "Mông chết" (Gluteal Amnesia)</h2>
+                <p>Khi ngồi, cơ mông của bạn bị đè nén và kéo căng liên tục. Theo thời gian, não bộ sẽ "quên" cách gửi tín hiệu kích hoạt nhóm cơ này (hiện tượng ức chế thần kinh cơ tương hỗ - Reciprocal inhibition).</p>
+                <p>Khi bạn đứng lên đi lại hoặc bưng bê đồ vật, cơ mông (vốn là nhóm cơ lớn nhất giúp giữ ổn định khung chậu) không chịu làm việc. Lúc này, các cơ ở vùng thắt lưng (lưng dưới) phải gồng lên gánh vác thay, dẫn đến cơn đau lưng âm ỉ kéo dài.</p>
+            </section>
+
+            <section id="mat" class="article-section">
+                <div class="article-meta">
+                    <span class="article-tag">Thần kinh Nhãn khoa</span>
+                    <a href="https://www.aoa.org/healthy-eyes/eye-and-vision-conditions/computer-vision-syndrome" target="_blank" class="source-link">Đi tới bài báo ↗</a>
+                </div>
+                <h2>4. Quy tắc 20-20-20 cứu tinh cho đôi mắt</h2>
+                <p>Nhức mỏi mắt và đau nửa đầu thường đi đôi với nhau. Khi tập trung cao độ vào màn hình, các nhóm cơ nhỏ quanh vùng chẩm (sau gáy) và cơ thể mi trong mắt bị căng cứng (Hội chứng thị giác màn hình - CVS).</p>
+                <p>Hãy áp dụng ngay quy luật <strong>20-20-20</strong> của các chuyên gia nhãn khoa:</p>
+                <ul>
+                    <li>Cứ mỗi <strong>20 phút</strong> làm việc.</li>
+                    <li>Nhìn ra xa khoảng <strong>20 feet</strong> (khoảng 6 mét).</li>
+                    <li>Trong vòng ít nhất <strong>20 giây</strong>. Đừng quên chớp mắt để tuyến lệ dàn đều độ ẩm!</li>
+                </ul>
+            </section>
+
+            <section id="co-rua" class="article-section">
+                <div class="article-meta">
+                    <span class="article-tag">Bệnh lý Cổ Vai Gáy</span>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/25393825/" target="_blank" class="source-link">Đi tới bài báo ↗</a>
+                </div>
+                <h2>5. Hội chứng "Cổ rùa" (Text Neck) & Trọng lượng vô hình</h2>
+                
+                <p><strong>Hội chứng "Cổ rùa" là gì?</strong> Đây là tình trạng đầu của bạn liên tục bị rướn về phía trước, trượt khỏi trục trọng tâm của cơ thể do thói quen nhìn sát vào màn hình máy tính hoặc cúi gập cổ xem điện thoại trong thời gian dài.</p>
+                
+                <div class="med-note" style="border-left-color: var(--blue-primary);">
+                    <strong>🔍 5 Giây Tự Kiểm Tra:</strong> Hãy nhờ đồng nghiệp chụp một bức ảnh góc nghiêng của bạn khi đang ngồi làm việc. Nếu <strong>lỗ tai của bạn nhô ra phía trước so với khớp vai</strong> (thay vì nằm trên cùng một đường thẳng đứng), bạn đang bị hội chứng "cổ rùa"!
+                </div>
+
+                <p><strong>Tại sao nó lại nguy hiểm?</strong></p>
+                <p>Ở tư thế thẳng chuẩn, đầu người trưởng thành nặng khoảng 4.5 - 5.5 kg. Theo nghiên cứu sinh cơ học của Tiến sĩ Kenneth Hansraj, <strong>cứ mỗi 2.5cm cổ nhô tới trước, áp lực đè lên cột sống cổ sẽ tăng thêm 4.5kg.</strong></p>
+                
+                <p>Nếu bạn cúi gập cổ ở góc 60 độ (tư thế lướt điện thoại quen thuộc), cột sống của bạn đang phải "cõng" một trọng lượng lên tới <strong>27kg</strong> (tương đương việc cõng một đứa trẻ 8 tuổi trên cổ). Sự chèn ép khổng lồ này lặp đi lặp lại mỗi ngày chính là thủ phạm gây đẩy lùi đĩa đệm và thoái hóa đốt sống cổ cực kỳ nhanh ở dân văn phòng.</p>
+            </section>
+
+            <section id="vat-cheo-chan" class="article-section">
+                <div class="article-meta">
+                    <span class="article-tag">Cấu trúc Khung chậu</span>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/27813456/" target="_blank" class="source-link">Đi tới bài báo ↗</a>
+                </div>
+                <h2>6. Tác hại không ngờ của thói quen vắt chéo chân</h2>
+                <p>Vắt chéo chân tạo cảm giác thoải mái tạm thời nhưng lại là kẻ thù của khung chậu. Tư thế này làm xoay và nghiêng vùng chậu (Pelvic tilt), khiến một bên cơ lưng bị kéo căng quá mức, bên còn lại bị co rút.</p>
+                <p>Hơn nữa, nó gây áp lực lên dây thần kinh Mác (Peroneal nerve) nằm gần đầu gối và cản trở lưu thông máu tĩnh mạch chi dưới, dễ dẫn đến chứng tê bì chân và giãn tĩnh mạch.</p>
+            </section>
+
+            <section id="ong-co-tay" class="article-section">
+                <div class="article-meta">
+                    <span class="article-tag">Hệ Thần kinh ngoại biên</span>
+                    <a href="https://www.jospt.org/doi/10.2519/jospt.2019.0301" target="_blank" class="source-link">Đi tới bài báo ↗</a>
+                </div>
+                <h2>7. Hội chứng Ống cổ tay (Carpal Tunnel)</h2>
+                <p>Sử dụng chuột và gõ phím với cổ tay bị gập hoặc ngửa quá mức sẽ làm hẹp "ống cổ tay" – khe hở nhỏ nơi dây thần kinh Giữa (Median nerve) đi qua.</p>
+                <p>Sự ma sát liên tục gây viêm sưng gân, chèn ép lên dây thần kinh này, dẫn đến cảm giác tê rần, châm chích ở ngón cái, ngón trỏ và ngón giữa. Hãy trang bị đệm kê cổ tay để giữ cổ tay luôn thẳng (vị trí trung tính).</p>
+            </section>
+
+            <section id="chuyen-hoa" class="article-section">
+                <div class="article-meta">
+                    <span class="article-tag">Sinh lý Chuyển hóa</span>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/12815182/" target="_blank" class="source-link">Đi tới bài báo ↗</a>
+                </div>
+                <h2>8. Đứng lên để "bật công tắc" trao đổi chất</h2>
+                <p>Nghiên cứu của GS Marc Hamilton chỉ ra rằng, khi bạn ngồi tĩnh quá 30 phút, nồng độ enzyme Lipoprotein lipase (LPL - enzyme chịu trách nhiệm phân giải chất béo trong máu) <strong>giảm sút tới 90%</strong>.</p>
+                <p>Tập gym 1 tiếng vào buổi tối không thể bù đắp lại 8 tiếng ngồi bất động. Chìa khóa là hãy phá vỡ sự tĩnh lặng: Đứng lên đi lấy nước, vươn vai mỗi giờ để "bật" lại công tắc trao đổi chất của cơ thể.</p>
+            </section>
+
+            <section id="gian-co" class="article-section">
+                <div class="article-meta">
+                    <span class="article-tag">Sinh lý Thần kinh cơ</span>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/22316148/" target="_blank" class="source-link">Đi tới bài báo ↗</a>
+                </div>
+                <h2>9. Tại sao kéo giãn cơ phải giữ đủ 30 - 60 giây?</h2>
+                <p>Nhiều người tập giãn cơ chỉ kéo căng 5-10 giây rồi thả ra, điều này hoàn toàn vô tác dụng. Khi cơ bắp bị kéo giãn đột ngột, một cơ chế bảo vệ gọi là <strong>Phản xạ căng cơ (Stretch reflex)</strong> sẽ làm cơ co cứng lại để chống đứt rách.</p>
+                <div class="med-note">Chỉ khi bạn hít thở đều và <strong>giữ nguyên tư thế căng đủ lâu (trên 30 giây)</strong>, một cơ quan nhận cảm khác là Cơ quan vi thể Golgi (Golgi Tendon Organ) mới phát tín hiệu an toàn, ra lệnh cho bó cơ thực sự "nhả" ra và thư giãn hoàn toàn.</div>
+            </section>
+
+            <div class="cta-bottom">
+                <h3 style="color: var(--blue-dark); margin-bottom: 10px;">Bạn đã hiểu cơ thể mình cần gì rồi chứ?</h3>
+                <p style="color: var(--text-muted);">Đừng chỉ đọc, hãy bắt tay vào thực hiện để thấy sự thay đổi.</p>
+                <a href="timer.html" class="btn-primary">Bật Trợ Lý Vận Động ngay!</a>
+            </div>
+       
+        </main>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('pt_dark_mode', isDark ? 'enabled' : 'disabled');
+            document.getElementById('darkModeToggle').innerText = isDark ? '☀️' : '🌙';
+        }
+        
+        // Kiểm tra trạng thái đã lưu
+        if (localStorage.getItem('pt_dark_mode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('darkModeToggle').innerText = '☀️';
+        }
+    </script>
+</body>
+</html>
